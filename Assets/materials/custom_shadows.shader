@@ -96,9 +96,10 @@ Shader "Custom/textured_shadows"
 			{
 				UNITY_LIGHT_ATTENUATION(atten, IN, IN.worldPos)
                 float shadow_pattern = 1-smoothstep(0.4f, 0.5f, length(IN.uv * _patternSize % _patternSpacing - 0.5f));
-                float brightness = step(0.99, 1-atten) * shadow_pattern;
+                float brightness = step(0.9, 1-atten) * shadow_pattern;
 		
                 return lerp(_litColor, _shadowColor, brightness);
+                return lerp(_litColor, _shadowColor, atten);
 			}
 
 			ENDCG
