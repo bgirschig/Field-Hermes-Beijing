@@ -1,0 +1,16 @@
+syntax = "proto3";
+package tutorial;
+
+option csharp_namespace = "Google.Protobuf.Network";
+
+message UdpMessage {
+    oneof message {
+        PingMessage pingMessage = 1;
+    }
+}
+
+message PingMessage {
+    string from_ip = 1;
+    string to_ip = 2;
+    double sent_time = 3;
+}
