@@ -82,7 +82,7 @@ Material:
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
-    - _patternSize: 2000
+    - _patternSize: 500
     - _patternSpacing: 3
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
