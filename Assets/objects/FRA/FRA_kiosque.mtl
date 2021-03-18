@@ -1,0 +1,165 @@
+#
+## Alias OBJ Material File
+# Exported from SketchUp, (c) 2000-2012 Trimble Navigation Limited
+
+newmtl quiosque_2
+Ka 0.000000 0.000000 0.000000
+Kd 0.090196 0.094118 0.121569
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_kiosque/quiosque_2.png
+
+newmtl quiosque_5
+Ka 0.000000 0.000000 0.000000
+Kd 0.062745 0.113725 0.149020
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_kiosque/quiosque_5.png
+
+newmtl quiosque_7
+Ka 0.000000 0.000000 0.000000
+Kd 0.074510 0.105882 0.129412
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_kiosque/quiosque_7.png
+
+newmtl quiosque_1_1
+Ka 0.000000 0.000000 0.000000
+Kd 0.611765 0.623529 0.650980
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_kiosque/quiosque_1_1.jpg
+
+newmtl BackColor
+Ka 0.000000 0.000000 0.000000
+Kd 0.643137 0.698039 0.733333
+Ks 0.330000 0.330000 0.330000
+
+newmtl quiosque_3
+Ka 0.000000 0.000000 0.000000
+Kd 0.635294 0.662745 0.698039
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_kiosque/quiosque_3.jpg
+
+newmtl quiosque_4
+Ka 0.000000 0.000000 0.000000
+Kd 0.670588 0.705882 0.733333
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_kiosque/quiosque_4.jpg
+
+newmtl quiosque_8_1
+Ka 0.000000 0.000000 0.000000
+Kd 0.349020 0.388235 0.392157
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_kiosque/quiosque_8_1.jpg
+
+newmtl SAT
+Ka 0.000000 0.000000 0.000000
+Kd 0.349020 0.368627 0.333333
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_kiosque/SAT.jpg
+
+newmtl quiosque_11_1
+Ka 0.000000 0.000000 0.000000
+Kd 0.643137 0.666667 0.666667
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_kiosque/quiosque_11_1.jpg
+
+newmtl SAT1_
+Ka 0.000000 0.000000 0.000000
+Kd 0.349020 0.368627 0.333333
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_kiosque/SAT1_.jpg
+
+newmtl quiosque_8_2
+Ka 0.000000 0.000000 0.000000
+Kd 0.176471 0.250980 0.329412
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_kiosque/quiosque_8_2.jpg
+
+newmtl SAT2_
+Ka 0.000000 0.000000 0.000000
+Kd 0.349020 0.368627 0.333333
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_kiosque/SAT2_.jpg
+
+newmtl quiosque_11_1_1_
+Ka 0.000000 0.000000 0.000000
+Kd 0.643137 0.666667 0.666667
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_kiosque/quiosque_11_1_1_.jpg
+
+newmtl quiosque_11_1_2_
+Ka 0.000000 0.000000 0.000000
+Kd 0.643137 0.666667 0.666667
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_kiosque/quiosque_11_1_2_.jpg
+
+newmtl quiosque_8_1_1_
+Ka 0.000000 0.000000 0.000000
+Kd 0.349020 0.388235 0.392157
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_kiosque/quiosque_8_1_1_.jpg
+
+newmtl SAT3_
+Ka 0.000000 0.000000 0.000000
+Kd 0.349020 0.368627 0.333333
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_kiosque/SAT3_.jpg
+
+newmtl SAT4_
+Ka 0.000000 0.000000 0.000000
+Kd 0.349020 0.368627 0.333333
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_kiosque/SAT4_.jpg
+
+newmtl quiosque_11_1_3_
+Ka 0.000000 0.000000 0.000000
+Kd 0.643137 0.666667 0.666667
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_kiosque/quiosque_11_1_3_.jpg
+
+newmtl SAT5_
+Ka 0.000000 0.000000 0.000000
+Kd 0.349020 0.368627 0.333333
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_kiosque/SAT5_.jpg
+
+newmtl quiosque_8_5
+Ka 0.000000 0.000000 0.000000
+Kd 0.466667 0.505882 0.501961
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_kiosque/quiosque_8_5.jpg
+
+newmtl SAT6_
+Ka 0.000000 0.000000 0.000000
+Kd 0.349020 0.368627 0.333333
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_kiosque/SAT6_.jpg
+
+newmtl quiosque_8_5_1_
+Ka 0.000000 0.000000 0.000000
+Kd 0.466667 0.505882 0.501961
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_kiosque/quiosque_8_5_1_.jpg
+
+newmtl SAT7_
+Ka 0.000000 0.000000 0.000000
+Kd 0.349020 0.368627 0.333333
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_kiosque/SAT7_.jpg
+
+newmtl quiosque_8_1_2_
+Ka 0.000000 0.000000 0.000000
+Kd 0.349020 0.388235 0.392157
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_kiosque/quiosque_8_1_2_.jpg
+
+newmtl quiosque_8_4
+Ka 0.000000 0.000000 0.000000
+Kd 0.309804 0.349020 0.352941
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_kiosque/quiosque_8_4.jpg
+
+newmtl quiosque_8_1_3_
+Ka 0.000000 0.000000 0.000000
+Kd 0.349020 0.388235 0.392157
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_kiosque/quiosque_8_1_3_.jpg
+

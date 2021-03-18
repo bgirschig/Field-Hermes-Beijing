@@ -1,0 +1,88 @@
+#
+## Alias OBJ Material File
+# Exported from SketchUp, (c) 2000-2012 Trimble Navigation Limited
+
+newmtl _auto_76
+Ka 0.000000 0.000000 0.000000
+Kd 0.607843 0.584314 0.537255
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_fontaineInnocents/_auto_76.jpg
+
+newmtl _auto_77
+Ka 0.000000 0.000000 0.000000
+Kd 0.615686 0.643137 0.658824
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_fontaineInnocents/_auto_77.jpg
+
+newmtl _auto_78
+Ka 0.000000 0.000000 0.000000
+Kd 0.682353 0.701961 0.670588
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_fontaineInnocents/_auto_78.jpg
+
+newmtl _auto_75
+Ka 0.000000 0.000000 0.000000
+Kd 0.615686 0.643137 0.658824
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_fontaineInnocents/_auto_75.jpg
+
+newmtl ForegroundColor
+Ka 0.000000 0.000000 0.000000
+Kd 0.000000 0.000000 0.000000
+Ks 0.330000 0.330000 0.330000
+
+newmtl _auto_79
+Ka 0.000000 0.000000 0.000000
+Kd 0.376471 0.368627 0.376471
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_fontaineInnocents/_auto_79.jpg
+
+newmtl _auto_80
+Ka 0.000000 0.000000 0.000000
+Kd 0.678431 0.705882 0.635294
+Ks 0.330000 0.330000 0.330000
+d 0.630000
+map_Kd FRA_fontaineInnocents/_auto_80.png
+
+newmtl _auto_82
+Ka 0.000000 0.000000 0.000000
+Kd 0.560784 0.537255 0.439216
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_fontaineInnocents/_auto_82.jpg
+
+newmtl _auto_83
+Ka 0.000000 0.000000 0.000000
+Kd 0.592157 0.541176 0.431373
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_fontaineInnocents/_auto_83.jpg
+
+newmtl _auto_84
+Ka 0.000000 0.000000 0.000000
+Kd 0.439216 0.415686 0.380392
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_fontaineInnocents/_auto_84.jpg
+
+newmtl _auto_81
+Ka 0.000000 0.000000 0.000000
+Kd 0.584314 0.533333 0.423529
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_fontaineInnocents/_auto_81.jpg
+
+newmtl _auto_85
+Ka 0.000000 0.000000 0.000000
+Kd 0.623529 0.650980 0.611765
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_fontaineInnocents/_auto_85.jpg
+
+newmtl _auto_86
+Ka 0.000000 0.000000 0.000000
+Kd 0.717647 0.713725 0.749020
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_fontaineInnocents/_auto_86.png
+
+newmtl _auto_64
+Ka 0.000000 0.000000 0.000000
+Kd 0.662745 0.662745 0.662745
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_fontaineInnocents/_auto_64.png
+

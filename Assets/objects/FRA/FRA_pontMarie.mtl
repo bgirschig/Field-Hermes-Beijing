@@ -1,0 +1,69 @@
+#
+## Alias OBJ Material File
+# Exported from SketchUp, (c) 2000-2012 Trimble Navigation Limited
+
+newmtl _auto_238
+Ka 0.000000 0.000000 0.000000
+Kd 0.752941 0.741176 0.725490
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_pontMarie/_auto_238.jpg
+
+newmtl _auto_239
+Ka 0.000000 0.000000 0.000000
+Kd 0.541176 0.537255 0.513725
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_pontMarie/_auto_239.jpg
+
+newmtl _auto_240
+Ka 0.000000 0.000000 0.000000
+Kd 0.549020 0.552941 0.517647
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_pontMarie/_auto_240.jpg
+
+newmtl ForegroundColor
+Ka 0.000000 0.000000 0.000000
+Kd 0.000000 0.000000 0.000000
+Ks 0.330000 0.330000 0.330000
+
+newmtl _auto_245
+Ka 0.000000 0.000000 0.000000
+Kd 0.709804 0.701961 0.686275
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_pontMarie/_auto_245.jpg
+
+newmtl _auto_247
+Ka 0.000000 0.000000 0.000000
+Kd 0.349020 0.345098 0.329412
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_pontMarie/_auto_247.jpg
+
+newmtl _auto_248
+Ka 0.000000 0.000000 0.000000
+Kd 0.427451 0.403922 0.384314
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_pontMarie/_auto_248.jpg
+
+newmtl _auto_241
+Ka 0.000000 0.000000 0.000000
+Kd 0.490196 0.529412 0.541176
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_pontMarie/_auto_241.jpg
+
+newmtl _auto_242
+Ka 0.000000 0.000000 0.000000
+Kd 0.392157 0.435294 0.462745
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_pontMarie/_auto_242.jpg
+
+newmtl _auto_243
+Ka 0.000000 0.000000 0.000000
+Kd 0.470588 0.505882 0.517647
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_pontMarie/_auto_243.jpg
+
+newmtl _auto_244
+Ka 0.000000 0.000000 0.000000
+Kd 0.274510 0.321569 0.360784
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_pontMarie/_auto_244.jpg
+

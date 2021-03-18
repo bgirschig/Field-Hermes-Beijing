@@ -1,0 +1,103 @@
+#
+## Alias OBJ Material File
+# Exported from SketchUp, (c) 2000-2012 Trimble Navigation Limited
+
+newmtl Water_Pool
+Ka 0.000000 0.000000 0.000000
+Kd 0.811765 0.796078 0.788235
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_obelisque/Water_Pool.jpg
+
+newmtl BackColor
+Ka 0.000000 0.000000 0.000000
+Kd 0.643137 0.698039 0.733333
+Ks 0.330000 0.330000 0.330000
+
+newmtl FrontColor
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.330000 0.330000 0.330000
+
+newmtl Water_Stream_Shallow
+Ka 0.000000 0.000000 0.000000
+Kd 0.686275 0.686275 0.678431
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_obelisque/Water_Stream_Shallow.jpg
+
+newmtl Water_Sparkling
+Ka 0.000000 0.000000 0.000000
+Kd 0.549020 0.627451 0.737255
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_obelisque/Water_Sparkling.jpg
+
+newmtl Water_Sparkling1_
+Ka 0.000000 0.000000 0.000000
+Kd 0.549020 0.627451 0.737255
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_obelisque/Water_Sparkling1_.jpg
+
+newmtl Water_Sparkling2_
+Ka 0.000000 0.000000 0.000000
+Kd 0.549020 0.627451 0.737255
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_obelisque/Water_Sparkling2_.jpg
+
+newmtl Water_Sparkling3_
+Ka 0.000000 0.000000 0.000000
+Kd 0.549020 0.627451 0.737255
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_obelisque/Water_Sparkling3_.jpg
+
+newmtl Water_Sparkling4_
+Ka 0.000000 0.000000 0.000000
+Kd 0.549020 0.627451 0.737255
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_obelisque/Water_Sparkling4_.jpg
+
+newmtl Water_Sparkling5_
+Ka 0.000000 0.000000 0.000000
+Kd 0.549020 0.627451 0.737255
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_obelisque/Water_Sparkling5_.jpg
+
+newmtl Water_Sparkling6_
+Ka 0.000000 0.000000 0.000000
+Kd 0.549020 0.627451 0.737255
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_obelisque/Water_Sparkling6_.jpg
+
+newmtl Water_Sparkling7_
+Ka 0.000000 0.000000 0.000000
+Kd 0.549020 0.627451 0.737255
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_obelisque/Water_Sparkling7_.jpg
+
+newmtl Water_Sparkling8_
+Ka 0.000000 0.000000 0.000000
+Kd 0.549020 0.627451 0.737255
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_obelisque/Water_Sparkling8_.jpg
+
+newmtl Water_Sparkling9_
+Ka 0.000000 0.000000 0.000000
+Kd 0.549020 0.627451 0.737255
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_obelisque/Water_Sparkling9_.jpg
+
+newmtl Water_Sparkling10_
+Ka 0.000000 0.000000 0.000000
+Kd 0.549020 0.627451 0.737255
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_obelisque/Water_Sparkling10_.jpg
+
+newmtl Water_Sparkling11_
+Ka 0.000000 0.000000 0.000000
+Kd 0.549020 0.627451 0.737255
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_obelisque/Water_Sparkling11_.jpg
+
+newmtl ForegroundColor
+Ka 0.000000 0.000000 0.000000
+Kd 0.000000 0.000000 0.000000
+Ks 0.330000 0.330000 0.330000
+

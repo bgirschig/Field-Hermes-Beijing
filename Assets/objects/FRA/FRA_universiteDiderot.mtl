@@ -1,0 +1,113 @@
+#
+## Alias OBJ Material File
+# Exported from SketchUp, (c) 2000-2012 Trimble Navigation Limited
+
+newmtl ForegroundColor
+Ka 0.000000 0.000000 0.000000
+Kd 0.000000 0.000000 0.000000
+Ks 0.330000 0.330000 0.330000
+
+newmtl _WhiteSmoke_
+Ka 0.000000 0.000000 0.000000
+Kd 0.960784 0.960784 0.960784
+Ks 0.330000 0.330000 0.330000
+
+newmtl _58
+Ka 0.000000 0.000000 0.000000
+Kd 0.937255 0.937255 0.937255
+Ks 0.330000 0.330000 0.330000
+
+newmtl Material5
+Ka 0.000000 0.000000 0.000000
+Kd 0.501961 0.498039 0.482353
+Ks 0.330000 0.330000 0.330000
+
+newmtl Material33
+Ka 0.000000 0.000000 0.000000
+Kd 0.588235 0.588235 0.490196
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_universiteDiderot/Material33.jpg
+
+newmtl Material11
+Ka 0.000000 0.000000 0.000000
+Kd 0.501961 0.517647 0.443137
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_universiteDiderot/Material11.jpg
+
+newmtl Material6
+Ka 0.000000 0.000000 0.000000
+Kd 0.717647 0.713725 0.690196
+Ks 0.330000 0.330000 0.330000
+
+newmtl Material7
+Ka 0.000000 0.000000 0.000000
+Kd 0.556863 0.560784 0.552941
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_universiteDiderot/Material7.jpg
+
+newmtl Material4
+Ka 0.000000 0.000000 0.000000
+Kd 0.501961 0.498039 0.482353
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_universiteDiderot/Material4.jpg
+
+newmtl Material26
+Ka 0.000000 0.000000 0.000000
+Kd 0.501961 0.498039 0.482353
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_universiteDiderot/Material26.jpg
+
+newmtl Material30
+Ka 0.000000 0.000000 0.000000
+Kd 0.364706 0.376471 0.321569
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_universiteDiderot/Material30.jpg
+
+newmtl Material8
+Ka 0.000000 0.000000 0.000000
+Kd 0.568627 0.588235 0.501961
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_universiteDiderot/Material8.jpg
+
+newmtl Material31
+Ka 0.000000 0.000000 0.000000
+Kd 0.686275 0.686275 0.686275
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_universiteDiderot/Material31.jpg
+
+newmtl Material1
+Ka 0.000000 0.000000 0.000000
+Kd 0.498039 0.498039 0.498039
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_universiteDiderot/Material1.jpg
+
+newmtl Material17
+Ka 0.000000 0.000000 0.000000
+Kd 0.341176 0.349020 0.349020
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_universiteDiderot/Material17.jpg
+
+newmtl Material21
+Ka 0.000000 0.000000 0.000000
+Kd 0.341176 0.349020 0.349020
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_universiteDiderot/Material21.jpg
+
+newmtl Material18
+Ka 0.000000 0.000000 0.000000
+Kd 0.341176 0.349020 0.349020
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_universiteDiderot/Material18.jpg
+
+newmtl Material19
+Ka 0.000000 0.000000 0.000000
+Kd 0.341176 0.349020 0.349020
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_universiteDiderot/Material19.jpg
+
+newmtl Material9
+Ka 0.000000 0.000000 0.000000
+Kd 0.556863 0.560784 0.552941
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_universiteDiderot/Material9.jpg
+

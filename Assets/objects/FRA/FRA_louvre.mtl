@@ -1,0 +1,55 @@
+#
+## Alias OBJ Material File
+# Exported from SketchUp, (c) 2000-2012 Trimble Navigation Limited
+
+newmtl structure1
+Ka 0.000000 0.000000 0.000000
+Kd 0.501961 0.501961 0.501961
+Ks 0.000000 0.000000 0.000000
+map_Kd FRA_louvre/structure1.png
+
+newmtl vitre
+Ka 0.000000 0.000000 0.000000
+Kd 0.333333 0.333333 0.447059
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_louvre/vitre.png
+
+newmtl ForegroundColor
+Ka 0.000000 0.000000 0.000000
+Kd 0.000000 0.000000 0.000000
+Ks 0.330000 0.330000 0.330000
+
+newmtl _Color_009_3
+Ka 0.000000 0.000000 0.000000
+Kd 0.000000 0.000000 0.000000
+Ks 0.330000 0.330000 0.330000
+
+newmtl Metal_Aluminum_Anodized
+Ka 0.000000 0.000000 0.000000
+Kd 0.792157 0.819608 0.858824
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_louvre/Metal_Aluminum_Anodized.jpg
+
+newmtl pPoutreEntree
+Ka 0.000000 0.000000 0.000000
+Kd 0.168627 0.172549 0.152941
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_louvre/pPoutreEntree.jpg
+
+newmtl pMontantEntree
+Ka 0.000000 0.000000 0.000000
+Kd 0.227451 0.219608 0.164706
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_louvre/pMontantEntree.jpg
+
+newmtl Color_007
+Ka 0.000000 0.000000 0.000000
+Kd 0.227451 0.227451 0.227451
+Ks 0.330000 0.330000 0.330000
+
+newmtl pSolSocle
+Ka 0.000000 0.000000 0.000000
+Kd 0.584314 0.600000 0.549020
+Ks 0.330000 0.330000 0.330000
+map_Kd FRA_louvre/pSolSocle.jpg
+
