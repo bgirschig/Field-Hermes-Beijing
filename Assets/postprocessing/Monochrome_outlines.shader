@@ -1,4 +1,4 @@
-Shader "Hidden/Monochrome_outlines" {
+Shader "Postprocessing/Monochrome_outlines" {
     Properties {
         _MainTex ("Base (RGB)", 2D) = "white" {}
         _intensity ("intensity", Range (0, 1)) = 1
