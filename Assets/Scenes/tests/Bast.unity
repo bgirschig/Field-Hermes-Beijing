@@ -185,10 +185,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -299.852
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 2dbd3dd9e45f41244a634bdb1384c427,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 396925270cd159d4cbc5fc37d3013710, type: 2}
     - target: {fileID: 919132149155446097, guid: 2dbd3dd9e45f41244a634bdb1384c427,
         type: 3}
       propertyPath: m_Name
-      value: stairs 2
+      value: stairs
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 2dbd3dd9e45f41244a634bdb1384c427,
         type: 3}
@@ -263,8 +268,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 6223297468621417852, guid: 2dbd3dd9e45f41244a634bdb1384c427,
-        type: 3}
+      objectReference: {fileID: 2100000, guid: 396925270cd159d4cbc5fc37d3013710, type: 2}
     - target: {fileID: 919132149155446097, guid: 2dbd3dd9e45f41244a634bdb1384c427,
         type: 3}
       propertyPath: m_Name
