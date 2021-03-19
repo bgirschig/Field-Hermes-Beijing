@@ -185,6 +185,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -299.852
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 2dbd3dd9e45f41244a634bdb1384c427,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 396925270cd159d4cbc5fc37d3013710, type: 2}
     - target: {fileID: 919132149155446097, guid: 2dbd3dd9e45f41244a634bdb1384c427,
         type: 3}
       propertyPath: m_Name
@@ -375,36 +380,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 309566459}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!21 &468602216
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Hidden/Monochrome_outlines
-  m_Shader: {fileID: 4800000, guid: 3de89a10202865143b8242d666afb908, type: 3}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - _EdgeThreshold: 0.879
-    - _intensity: 0.771
-    - _lineThickness: 0.1
-    m_Colors:
-    - _lineColor: {r: 0, g: 0, b: 0, a: 1}
-  m_BuildTextureStacks: []
 --- !u!1 &778505669
 GameObject:
   m_ObjectHideFlags: 0
@@ -671,8 +646,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c07e290968bd37e428d29549d6b86602, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shader: {fileID: 4800000, guid: 3de89a10202865143b8242d666afb908, type: 3}
-  material: {fileID: 468602216}
+  material: {fileID: 2100000, guid: 7f83b530a31fd36459a05829aee0866b, type: 2}
 --- !u!114 &1446521594
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -835,8 +809,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 6223297468621417852, guid: 2dbd3dd9e45f41244a634bdb1384c427,
-        type: 3}
+      objectReference: {fileID: 2100000, guid: 396925270cd159d4cbc5fc37d3013710, type: 2}
     - target: {fileID: 919132149155446097, guid: 2dbd3dd9e45f41244a634bdb1384c427,
         type: 3}
       propertyPath: m_Name
@@ -960,7 +933,7 @@ GameObject:
   - component: {fileID: 1818264218}
   - component: {fileID: 1818264217}
   m_Layer: 0
-  m_Name: camera cart (1)
+  m_Name: player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1040,7 +1013,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 50
+  m_Intensity: 1
   m_Range: 500
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
