@@ -1,3 +1,6 @@
+// Discover "siblings" on the local network (other computers running the same app).
+// Figure out some properties about each (eg. network latency)
+
 using System.Collections.Generic;
 using UnityEngine;
 using System.Net.Sockets;

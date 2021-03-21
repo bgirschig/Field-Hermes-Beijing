@@ -1,33 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-class RollingArray<T> {
-    public readonly int size;
-    protected readonly T[] array;
-    protected int front;
-
-    public RollingArray(int size) {
-        array = new T[size];
-        this.size = size;
-        front = 0;
-    }
-
-    public T this[int index] {
-        get {
-            return array[(front + index) % size];
-        }
-        set {
-            array[(front + index) % size] = value;
-        }
-    }
-
-    public void Append(T val) {
-        front = (front + 1) % size;
-        this[size-1] = val;
-    }
-}
+// Compute some statistics on a rolling array (sum, average, variance, min, max, standard deviation, etc...)
+// These values are updated on each insert (rather than re-computed by looping over the whole array)
 
 class RollingStats {
     public readonly int size;

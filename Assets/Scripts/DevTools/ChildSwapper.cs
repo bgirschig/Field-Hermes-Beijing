@@ -1,8 +1,8 @@
+// Swap between the child objects. Useful to compare model versions
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-// Swap between the child objects. Useful to compare them
 
 public class ChildSwapper : MonoBehaviour
 {

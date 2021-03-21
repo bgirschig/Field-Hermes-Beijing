@@ -1,3 +1,5 @@
+// Detects the horizontal position of a bright(er) object in a webcam input
+
 using UnityEngine;
 using UnityEngine.UI;
 using OpenCvSharp;

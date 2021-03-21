@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿// Controller for audio-sync test scene
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;

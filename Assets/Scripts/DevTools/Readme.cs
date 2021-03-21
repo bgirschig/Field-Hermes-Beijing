@@ -1,8 +1,8 @@
+// A place to write notes about a gameObject, how it works, etc...
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-// Allows swapping between the child object. Useful to compare objects
 
 public class Readme : MonoBehaviour
 {

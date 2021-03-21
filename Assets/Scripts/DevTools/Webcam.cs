@@ -1,3 +1,5 @@
+// Display the output from the first webcam on a rawImage
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,8 +7,7 @@ using UnityEngine.UI;
 using OpenCvSharp;
 using System.Threading;
 
-// CV_REDUCE_SUM
-
+[RequireComponent(typeof(RawImage))]
 public class Webcam : MonoBehaviour
 {
     WebCamTexture camTexture;
