@@ -1,6 +1,8 @@
 // Compute some statistics on a rolling array (sum, average, variance, min, max, standard deviation, etc...)
 // These values are updated on each insert (rather than re-computed by looping over the whole array)
 
+using System;
+
 class RollingStats {
     public readonly int size;
     public float sum { get; private set; }
