@@ -6,8 +6,7 @@ Shader "Custom/textured_shadows"
     {
         _shadowColor ("Shadow Color", Color) = (0,1,0,1)
         _litColor ("LitColor", Color) = (0,0,0,1)
-        _patternSize ("pattern size", float) = 400
-        _patternSpacing ("pattern spacing", float) = 2
+		_MainTex ("Shadow texture", 2D) = "white" {}
     }
 	SubShader
 	{
@@ -71,8 +70,8 @@ Shader "Custom/textured_shadows"
 
             float4 _shadowColor;
             float4 _litColor;
-            float _patternSize;
-            float _patternSpacing;
+			sampler2D _MainTex;
+            float4 _MainTex_ST;
 
 			struct v2f
 			{
@@ -94,9 +93,9 @@ Shader "Custom/textured_shadows"
 
 			fixed4 frag (v2f IN) : SV_Target
 			{
+				fixed4 shadow_texture = tex2D(_MainTex, TRANSFORM_TEX(IN.uv, _MainTex));
 				UNITY_LIGHT_ATTENUATION(atten, IN, IN.worldPos)
-                float shadow_pattern = 1-smoothstep(0.4f, 0.5f, length(IN.uv * _patternSize % _patternSpacing - 0.5f));
-                float brightness = step(0.9, 1-atten) * shadow_pattern;
+                float brightness = step(0.9, 1-atten) * shadow_texture;
 		
                 return lerp(_litColor, _shadowColor, brightness);
                 return lerp(_litColor, _shadowColor, atten);
