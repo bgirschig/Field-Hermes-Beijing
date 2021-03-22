@@ -1,0 +1,117 @@
+#
+## Alias OBJ Material File
+# Exported from SketchUp, (c) 2000-2012 Trimble Navigation Limited
+
+newmtl Chinese_corbal_02
+Ka 0.000000 0.000000 0.000000
+Kd 0.650980 0.596078 0.474510
+Ks 0.330000 0.330000 0.330000
+map_Kd CHN_summerPalace/Chinese_corbal_02.png
+
+newmtl Lisanne_Brush_Handle
+Ka 0.000000 0.000000 0.000000
+Kd 0.403922 0.000000 0.039216
+Ks 0.330000 0.330000 0.330000
+
+newmtl BackColor
+Ka 0.000000 0.000000 0.000000
+Kd 0.643137 0.698039 0.733333
+Ks 0.330000 0.330000 0.330000
+
+newmtl FrontColor
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.330000 0.330000 0.330000
+
+newmtl ForegroundColor
+Ka 0.000000 0.000000 0.000000
+Kd 0.000000 0.000000 0.000000
+Ks 0.330000 0.330000 0.330000
+
+newmtl Floor_Medieval_00127
+Ka 0.000000 0.000000 0.000000
+Kd 0.580392 0.560784 0.541176
+Ks 0.330000 0.330000 0.330000
+map_Kd CHN_summerPalace/Floor_Medieval_00127.jpg
+
+newmtl Lisanne_Necklace
+Ka 0.000000 0.000000 0.000000
+Kd 0.756863 0.713725 0.466667
+Ks 0.330000 0.330000 0.330000
+
+newmtl Labna_4
+Ka 0.000000 0.000000 0.000000
+Kd 0.686275 0.596078 0.458824
+Ks 0.330000 0.330000 0.330000
+map_Kd CHN_summerPalace/Labna_4.jpg
+
+newmtl wood_railing
+Ka 0.000000 0.000000 0.000000
+Kd 0.776471 0.756863 0.733333
+Ks 0.330000 0.330000 0.330000
+map_Kd CHN_summerPalace/wood_railing.png
+
+newmtl roof_trim
+Ka 0.000000 0.000000 0.000000
+Kd 0.705882 0.521569 0.294118
+Ks 0.330000 0.330000 0.330000
+map_Kd CHN_summerPalace/roof_trim.jpg
+
+newmtl Lisanne_Boot_Sole_01
+Ka 0.000000 0.000000 0.000000
+Kd 0.619608 0.458824 0.325490
+Ks 0.330000 0.330000 0.330000
+
+newmtl Roofing_Tile_Spanish
+Ka 0.000000 0.000000 0.000000
+Kd 0.537255 0.250980 0.137255
+Ks 0.330000 0.330000 0.330000
+map_Kd CHN_summerPalace/Roofing_Tile_Spanish.jpg
+
+newmtl elevation_pagoda_summer_palace
+Ka 0.000000 0.000000 0.000000
+Kd 0.686275 0.294118 0.188235
+Ks 0.330000 0.330000 0.330000
+map_Kd CHN_summerPalace/elevation_pagoda_summer_palace.jpg
+
+newmtl Cladding_Siding_Tan
+Ka 0.000000 0.000000 0.000000
+Kd 0.635294 0.494118 0.372549
+Ks 0.330000 0.330000 0.330000
+map_Kd CHN_summerPalace/Cladding_Siding_Tan.jpg
+
+newmtl Metal_bronze
+Ka 0.000000 0.000000 0.000000
+Kd 0.450980 0.243137 0.070588
+Ks 0.330000 0.330000 0.330000
+map_Kd CHN_summerPalace/Metal_bronze.jpg
+
+newmtl wall_facing_marble
+Ka 0.000000 0.000000 0.000000
+Kd 0.898039 0.874510 0.780392
+Ks 0.330000 0.330000 0.330000
+map_Kd CHN_summerPalace/wall_facing_marble.jpg
+
+newmtl Lisanne_Caulk
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.330000 0.330000 0.330000
+
+newmtl bejing_railing
+Ka 0.000000 0.000000 0.000000
+Kd 0.733333 0.705882 0.647059
+Ks 0.330000 0.330000 0.330000
+map_Kd CHN_summerPalace/bejing_railing.png
+
+newmtl Man_oriental_2
+Ka 0.000000 0.000000 0.000000
+Kd 0.470588 0.137255 0.145098
+Ks 0.330000 0.330000 0.330000
+map_Kd CHN_summerPalace/Man_oriental_2.png
+
+newmtl Man_oriental
+Ka 0.000000 0.000000 0.000000
+Kd 0.631373 0.584314 0.576471
+Ks 0.330000 0.330000 0.330000
+map_Kd CHN_summerPalace/Man_oriental.png
+

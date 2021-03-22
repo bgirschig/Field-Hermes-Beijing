@@ -1,0 +1,38 @@
+#
+## Alias OBJ Material File
+# Exported from SketchUp, (c) 2000-2012 Trimble Navigation Limited
+
+newmtl Color_C21
+Ka 0.000000 0.000000 0.000000
+Kd 0.286275 0.141176 0.000000
+Ks 0.330000 0.330000 0.330000
+map_Kd H_boitesHermes/Color_C21.jpg
+
+newmtl _2
+Ka 0.000000 0.000000 0.000000
+Kd 0.901961 0.466667 0.164706
+Ks 0.330000 0.330000 0.330000
+map_Kd H_boitesHermes/_2.jpg
+
+newmtl White
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.330000 0.330000 0.330000
+map_Kd H_boitesHermes/White.jpg
+
+newmtl hermes_logo_thumbnail
+Ka 0.000000 0.000000 0.000000
+Kd 0.501961 0.501961 0.501961
+Ks 0.000000 0.000000 0.000000
+map_Kd H_boitesHermes/hermes_logo_thumbnail.tif
+
+newmtl ForegroundColor
+Ka 0.000000 0.000000 0.000000
+Kd 0.000000 0.000000 0.000000
+Ks 0.330000 0.330000 0.330000
+
+newmtl _Charcoal_
+Ka 0.000000 0.000000 0.000000
+Kd 0.137255 0.137255 0.137255
+Ks 0.330000 0.330000 0.330000
+
