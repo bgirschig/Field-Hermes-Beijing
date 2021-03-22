@@ -1,0 +1,25 @@
+#
+## Alias OBJ Material File
+# Exported from SketchUp, (c) 2000-2012 Trimble Navigation Limited
+
+newmtl ROMAN_BRONZE_MICA_UC106691F
+Ka 0.000000 0.000000 0.000000
+Kd 0.525490 0.407843 0.282353
+Ks 0.330000 0.330000 0.330000
+
+newmtl BackColor
+Ka 0.000000 0.000000 0.000000
+Kd 0.643137 0.698039 0.733333
+Ks 0.330000 0.330000 0.330000
+
+newmtl _Metal_Corrogated_Shiny_2
+Ka 0.000000 0.000000 0.000000
+Kd 0.835294 0.752941 0.019608
+Ks 0.330000 0.330000 0.330000
+map_Kd H_trophee/_Metal_Corrogated_Shiny_2.jpg
+
+newmtl ForegroundColor
+Ka 0.000000 0.000000 0.000000
+Kd 0.000000 0.000000 0.000000
+Ks 0.330000 0.330000 0.330000
+
