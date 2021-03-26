@@ -86,6 +86,15 @@ public class BlitEffect : MonoBehaviour {
         foreach (RendererInfo rendererInfo in renderables) {
             var hasLayer = ((layerMask.value & (1 << rendererInfo.layer)) > 0);
             var mat = hasLayer ? silhouetteWhite : silhouetteBlack;
+            // Text renderers don't have a meshFilter. They also don't work well  
+            if (rendererInfo.subMeshCount == 0) {
+                // TODO: We shouldn't be using the mesh's 'normal' material to render to our stencil.
+                // This only works when the material is set to write unlit white.
+                // Possible solutions:
+                //   - A custom render pass that only this code uses, that does the equivalent of the silhouette materials.
+                //   - A blit call after the DrawRenders, that ignores any color information
+                // commands.DrawRenderer(rendererInfo.renderer, rendererInfo.renderer.sharedMaterial);
+            }
             for (int subMeshIndex = 0; subMeshIndex < rendererInfo.subMeshCount; subMeshIndex++)
             {
                 commands.DrawRenderer(rendererInfo.renderer, mat, submeshIndex:subMeshIndex);
@@ -99,7 +108,12 @@ public class BlitEffect : MonoBehaviour {
         for (int i = 0; i < renderers.Length; i++)
         {
             renderables[i].renderer = renderers[i];
-            renderables[i].subMeshCount = renderers[i].GetComponent<MeshFilter>().sharedMesh.subMeshCount;
+            MeshFilter meshFilter = renderers[i].GetComponent<MeshFilter>();
+            if (meshFilter != null) {
+                renderables[i].subMeshCount = meshFilter.sharedMesh.subMeshCount;
+            } else {
+                renderables[i].subMeshCount = 0;
+            }
             renderables[i].layer = renderers[i].gameObject.layer;
         }
     }
