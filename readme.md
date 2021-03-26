@@ -9,3 +9,8 @@ to rebuild the protobuf classes:
 ```powershell
 protoc.exe --csharp_out=./Assets/Scripts/protobufs ./Assets/Scripts/protobufs/*.proto
 ```
+
+## Thanks
+All hail:
+- [ronja's tutorials](https://www.ronja-tutorials.com/)
+- [RenderDoc](https://renderdoc.org/)

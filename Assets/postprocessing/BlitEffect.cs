@@ -1,17 +1,131 @@
+// Applies an effect to the output of a camera
+
 using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.Rendering;
+
 [ExecuteInEditMode]
+[RequireComponent(typeof(Camera))]
 public class BlitEffect : MonoBehaviour {
-    public Material material;
-    
+    private const int LAYERS_EVERYTHING = ~0;
+    private const int LAYERS_NONE = 0;
+
+    [Tooltip("The material to be used for this effect")]
+    public Material effectMaterial;
+
+    [Tooltip("Make some additionnal textures available to the effectShader, eg. _CameraDepthTexture  or _CameraDepthNormalsTexture")]
+    public DepthTextureMode depthTextureMode;
+
+    [Tooltip("Optionnal layer mask to limit on What objects the effect is applied. Select 'Everything' for better performance")]
+    public LayerMask layerMask = LAYERS_EVERYTHING;
+
+    [Tooltip("What output to show. This is mostly for debugging")]
+    public ViewSelector view = ViewSelector.Output;
+
+
+    // Used to draw a "stencil" with all the objects that should be affected (white) or not be affected (black)
+    private Material silhouetteBlack;
+    private Material silhouetteWhite;
+    // A list of all renderers in the scene: we'll need to render each to construct our stencil.
+    // We can't simply render the affected ones, since affected and unaffected items need to occlude each other)
+    private RendererInfo[] renderables;
+    private Camera cam;
+
+    void Start() {
+        cam = GetComponent<Camera>();
+        depthTextureMode = cam.depthTextureMode;
+        cam.depthTextureMode = depthTextureMode;
+
+        UpdateRenderablesList();
+        CreateSilhouetteMaterials();
+    }
+
     // Postprocess the image
     void OnRenderImage (RenderTexture source, RenderTexture destination)
     {
-        if (!material) {
+        if (!effectMaterial || layerMask == LAYERS_NONE || view == ViewSelector.Input) {
             Graphics.Blit(source, destination);
-            return;
+        } else {
+            UpdateSelectionBuffer(source, destination);
+            if (view == ViewSelector.Output) {
+                Graphics.Blit(source, destination, effectMaterial);
+            }
+        }
+    }
+
+    void UpdateSelectionBuffer(RenderTexture source, RenderTexture destination) {
+        var commands = new CommandBuffer();
+        int selectionBuffer = Shader.PropertyToID("_SelectionBuffer");
+        commands.GetTemporaryRT(selectionBuffer, source.descriptor);
+
+        commands.SetRenderTarget(selectionBuffer);
+
+        if (layerMask != LAYERS_EVERYTHING) {
+            DrawSilhouettes(commands);
+        } else {
+            // If layerMask is set to 'Everything', we don't need to render individual objects.
+            // instead, we simply 'clear' the _SelectionBuffer texture to white
+            commands.ClearRenderTarget(true, true, Color.white);
+        }
+        
+        if (view == ViewSelector.Mask) {
+            commands.Blit (selectionBuffer, destination);
         }
 
-        Graphics.Blit (source, destination, material);
+        commands.ReleaseTemporaryRT(selectionBuffer);
+        //execute and clean up commandbuffer itself
+        Graphics.ExecuteCommandBuffer(commands);
+        commands.Dispose();
+    }
+
+    void DrawSilhouettes(CommandBuffer commands) {
+        if (silhouetteWhite==null || silhouetteWhite == null) CreateSilhouetteMaterials();
+        commands.ClearRenderTarget(true, true, Color.clear);
+        // TODO: Updating this every frame is inefficient. Find a way to get an up-to-date list of renderers without doing this.
+        UpdateRenderablesList();
+        foreach (RendererInfo rendererInfo in renderables) {
+            var hasLayer = ((layerMask.value & (1 << rendererInfo.layer)) > 0);
+            var mat = hasLayer ? silhouetteWhite : silhouetteBlack;
+            for (int subMeshIndex = 0; subMeshIndex < rendererInfo.subMeshCount; subMeshIndex++)
+            {
+                commands.DrawRenderer(rendererInfo.renderer, mat, submeshIndex:subMeshIndex);
+            }
+        }
+    }
+
+    void UpdateRenderablesList() {
+        var renderers = GameObject.FindObjectsOfType<Renderer>();
+        renderables = new RendererInfo[renderers.Length];
+        for (int i = 0; i < renderers.Length; i++)
+        {
+            renderables[i].renderer = renderers[i];
+            renderables[i].subMeshCount = renderers[i].GetComponent<MeshFilter>().sharedMesh.subMeshCount;
+            renderables[i].layer = renderers[i].gameObject.layer;
+        }
+    }
+
+    void CreateSilhouetteMaterials() {
+        var shader = Shader.Find("Hidden/silhouette");
+        silhouetteBlack = new Material(shader);
+        silhouetteBlack.SetColor("_mainColor", Color.black);
+        silhouetteWhite = new Material(shader);
+        silhouetteWhite.SetColor("_mainColor", Color.white);
+    }
+
+    void OnValidate() {
+        cam = GetComponent<Camera>();
+        cam.depthTextureMode = depthTextureMode;
+    }
+    
+    public struct RendererInfo {
+        public Renderer renderer;
+        public int subMeshCount;
+        public int layer;
+    }
+
+    public enum ViewSelector {
+        Input,
+        Mask,
+        Output,
     }
 }
