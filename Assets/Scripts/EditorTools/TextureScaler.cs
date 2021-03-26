@@ -1,8 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
+// Scales the attached renderer's main texture to compensate the GameObject's localscale
+
 using UnityEngine;
 
 [ExecuteInEditMode]
+[RequireComponent(typeof(Renderer))]
 public class TextureScaler : MonoBehaviour
 {
     public float scale = 1;
