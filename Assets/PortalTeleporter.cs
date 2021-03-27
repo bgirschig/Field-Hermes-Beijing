@@ -5,9 +5,9 @@ using UnityTemplateProjects;
 
 public class PortalTeleporter : MonoBehaviour
 {
-    public bool shouldTeleport = false;
+    public bool playerInTrigger = false;
     public Camera otherPortalCamera;
-    public Vector3 prevCameraPos;
+    float prevRelativeZ;
 
 
     SimpleCameraController cameraController;
@@ -19,21 +19,31 @@ public class PortalTeleporter : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
-        Vector3 cameraMoveDirection = (Camera.main.transform.position - prevCameraPos).normalized;
-        float movingTowards = Vector3.Dot(transform.forward, cameraMoveDirection);
-        if (shouldTeleport) {
+        bool lookingAt = Vector3.Dot(Camera.main.transform.forward, transform.forward) > 0;
+        float relativeZ = transform.InverseTransformPoint(Camera.main.transform.position).z;
+        bool movingTowards = relativeZ-prevRelativeZ > 0;
+        prevRelativeZ = relativeZ;
+
+        if (playerInTrigger && movingTowards &&
+            ((lookingAt && relativeZ < -0.4f) ||
+            (!lookingAt && relativeZ > 0.4f))
+        ) {
+            print("teleport");
             if (cameraController != null) {
                 cameraController.TeleportTo(otherPortalCamera.transform);
             }
-            shouldTeleport = false;
+            playerInTrigger = false;
         }
     }
 
     void OnTriggerEnter (Collider other) {
-		if (other.tag == "MainCamera") shouldTeleport = true;
+		if (other.tag == "MainCamera") playerInTrigger = true;
 	}
 
 	void OnTriggerExit (Collider other) {
-		if (other.tag == "MainCamera") shouldTeleport = false;
+		if (other.tag == "MainCamera") playerInTrigger = false;
 	}
+
+    void OnDrawGizmos() {
+    }
 }

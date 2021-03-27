@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[ExecuteInEditMode()]
 public class PortalCamera : MonoBehaviour
 {
     public Transform portal;
@@ -16,8 +17,9 @@ public class PortalCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        otherPortal.transform.Rotate(0,180,0);
+
         Vector3 positionOffset = otherPortal.transform.InverseTransformPoint(Camera.main.transform.position);
-        // positionOffset.z = -positionOffset.z;
         transform.position = portal.transform.TransformPoint(positionOffset);
 
         Vector3 forwardOffset = otherPortal.transform.InverseTransformDirection(Camera.main.transform.forward);
@@ -26,5 +28,7 @@ public class PortalCamera : MonoBehaviour
             portal.transform.TransformDirection(forwardOffset),
             portal.transform.TransformDirection(upOffset)
         );
+
+        otherPortal.transform.Rotate(0,180,0);
     }
 }
