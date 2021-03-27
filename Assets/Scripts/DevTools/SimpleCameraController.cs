@@ -179,6 +179,11 @@ namespace UnityTemplateProjects
 
             m_InterpolatingCameraState.UpdateTransform(transform);
         }
+
+        public void TeleportTo(Transform t) {
+            m_TargetCameraState.SetFromTransform(t);
+            m_InterpolatingCameraState.SetFromTransform(t);
+        }
     }
 
 }
