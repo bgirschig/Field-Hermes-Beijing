@@ -7,6 +7,8 @@ Shader "Custom/textured_shadows"
         _shadowColor ("Shadow Color", Color) = (0,1,0,1)
         _litColor ("LitColor", Color) = (0,0,0,1)
 		_MainTex ("Shadow texture", 2D) = "white" {}
+		[Toggle(SCREEN_SPACE_COORDINATES)]
+        _ScreenSpaceCoordinates ("Screen space", Float) = 0
     }
 	SubShader
 	{
@@ -64,6 +66,9 @@ Shader "Custom/textured_shadows"
 			#pragma fragment frag
 			// Include shadowing support for point/spot
 			#pragma multi_compile_fwdadd_fullshadows
+			// Toggle between texture modes: world space and screen space
+			#pragma shader_feature SCREEN_SPACE_COORDINATES
+
 			#include "UnityCG.cginc"
 			#include "Lighting.cginc"
 			#include "AutoLight.cginc"
@@ -72,6 +77,7 @@ Shader "Custom/textured_shadows"
             float4 _litColor;
 			sampler2D _MainTex;
             float4 _MainTex_ST;
+			float2 _MainTex_TexelSize;
 
 			struct v2f
 			{
@@ -93,7 +99,13 @@ Shader "Custom/textured_shadows"
 
 			fixed4 frag (v2f IN) : SV_Target
 			{
-				fixed4 shadow_texture = tex2D(_MainTex, TRANSFORM_TEX(IN.uv, _MainTex));
+				#ifdef SCREEN_SPACE_COORDINATES
+					fixed4 shadow_texture = tex2D(_MainTex, TRANSFORM_TEX(IN.pos.xy * _MainTex_TexelSize, _MainTex));
+				#else
+					float2 tex_uvs = IN.worldPos.xz * 0.2;
+					fixed4 shadow_texture = tex2D(_MainTex, TRANSFORM_TEX(tex_uvs, _MainTex));
+				#endif
+
 				UNITY_LIGHT_ATTENUATION(atten, IN, IN.worldPos)
                 float brightness = step(0.9, 1-atten) * shadow_texture;
 		
