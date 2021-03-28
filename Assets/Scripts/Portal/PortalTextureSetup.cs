@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class portalTextureSetup_new : MonoBehaviour
+public class PortalTextureSetup : MonoBehaviour
 {
     public Material portalMaterial;
     private Vector2 prevScreenSize;

@@ -8,7 +8,8 @@ using System;
 public class Portal : MonoBehaviour
 {
     public Transform target;
-    public bool isActive = true;
+    [NonSerialized]
+    public bool isActive = false;
     public Portal nextPortal;
 
     private Camera portalCamera;
@@ -18,11 +19,6 @@ public class Portal : MonoBehaviour
     void Start()
     {
         portalCamera = GameObject.FindGameObjectWithTag("portal camera").GetComponent<Camera>();
-        if (isActive && activePortal == null) {
-            activate();
-        } else {
-            deactivate();
-        }
     }
 
     void Update()
@@ -55,17 +51,25 @@ public class Portal : MonoBehaviour
 	}
 
     void OnDrawGizmos() {
-        Gizmos.color = isActive ? Color.magenta : Color.gray;
-        Vector3 offsetPoint = transform.TransformPoint(new Vector3(0,0,1));
-        Vector3 targetOffsetPoint = target.TransformPoint(new Vector3(0,0,-1));
-        Gizmos.DrawLine(transform.position, offsetPoint);
-        Gizmos.DrawLine(offsetPoint, targetOffsetPoint);
-        Gizmos.DrawLine(targetOffsetPoint, target.transform.position);
+        if (target != null) {
+            Gizmos.color = isActive ? Color.magenta : Color.gray;
+            Vector3 offsetPoint = transform.TransformPoint(new Vector3(0,0,1));
+            Vector3 targetOffsetPoint = target.TransformPoint(new Vector3(0,0,-1));
+            Gizmos.DrawLine(transform.position, offsetPoint);
+            Gizmos.DrawLine(offsetPoint, targetOffsetPoint);
+            Gizmos.DrawLine(targetOffsetPoint, target.transform.position);
+        }
 
-        if (nextPortal != null) {
-            Gizmos.color = new Color(0,0.4f,0,1);
+        // if (isActive && target != null) {
+        //     Gizmos.color = Color.magenta;
+        //     Gizmos.DrawSphere(portalCamera.transform.position, 0.3f);
+        // }
+
+        if (nextPortal != null && target != null) {
+            Gizmos.color = Color.gray;
             Gizmos.DrawLine(target.transform.position, nextPortal.transform.position);
         }
+
     }
 
     public void activate() {
