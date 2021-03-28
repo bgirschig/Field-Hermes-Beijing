@@ -28,14 +28,16 @@ public class PortalTextureSetup : MonoBehaviour {
 
 	void updateTextures() {
 		print("valus");
-		if (cameraA.targetTexture != null) cameraA.targetTexture.Release();
-		if (cameraB.targetTexture != null) cameraB.targetTexture.Release();
-		
-		cameraA.targetTexture = new RenderTexture(Screen.width, Screen.height, 24);
-		cameraB.targetTexture = new RenderTexture(Screen.width, Screen.height, 24);
-
-		portalMatB.mainTexture = cameraA.targetTexture;
-		portalMatA.mainTexture = cameraB.targetTexture;
+		if (cameraA != null && portalMatB != null) {
+			if (cameraA.targetTexture != null) cameraA.targetTexture.Release();
+			cameraA.targetTexture = new RenderTexture(Screen.width, Screen.height, 24);
+			portalMatB.mainTexture = cameraA.targetTexture;
+		}
+		if (cameraB != null && portalMatA != null) {
+			if (cameraB.targetTexture != null) cameraB.targetTexture.Release();
+			cameraB.targetTexture = new RenderTexture(Screen.width, Screen.height, 24);
+			portalMatA.mainTexture = cameraB.targetTexture;
+		}
 	}
 
 }
