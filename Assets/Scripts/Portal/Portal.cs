@@ -52,7 +52,7 @@ public class Portal : MonoBehaviour
 
     void OnDrawGizmos() {
         if (target != null) {
-            Gizmos.color = isActive ? Color.magenta : Color.gray;
+            Gizmos.color = isActive ? Color.magenta : new Color(0.4f, 0, 0.4f);
             Vector3 offsetPoint = transform.TransformPoint(new Vector3(0,0,1));
             Vector3 targetOffsetPoint = target.TransformPoint(new Vector3(0,0,-1));
             Gizmos.DrawLine(transform.position, offsetPoint);
@@ -66,7 +66,7 @@ public class Portal : MonoBehaviour
         // }
 
         if (nextPortal != null && target != null) {
-            Gizmos.color = Color.gray;
+            Gizmos.color = new Color(0.5f,0.5f,1f);
             Gizmos.DrawLine(target.transform.position, nextPortal.transform.position);
         }
 
