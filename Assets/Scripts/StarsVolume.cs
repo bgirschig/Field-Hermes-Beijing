@@ -20,7 +20,6 @@ public class StarsVolume : MonoBehaviour {
         Random.Range(bounds.min.y, bounds.max.y),
         Random.Range(bounds.min.z, bounds.max.z)
       );
-      print(points[i].position);
 
       points[i].startSize = starSize;
       points[i].startColor = new Color(1, 1, 1, 1);
