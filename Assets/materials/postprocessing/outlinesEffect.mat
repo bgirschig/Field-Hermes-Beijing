@@ -73,12 +73,12 @@ Material:
     - _StencilRef: 5
     - _UVSec: 0
     - _ZWrite: 1
-    - _brigtnessInfluenceOnLine: 0.545
+    - _brigtnessInfluenceOnLine: 0.75
     - _colorOffset: 4.48
-    - _depthInfluenceOnLine: 0.518
+    - _depthInfluenceOnLine: 0.5
     - _distance: 7.72
-    - _lineThickness: 0.61
-    - _normalInfluenceOnLine: 0.255
+    - _lineThickness: 0.65
+    - _normalInfluenceOnLine: 0.5
     - _sharpness: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
