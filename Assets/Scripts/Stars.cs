@@ -8,6 +8,7 @@ public class Stars : MonoBehaviour {
   public float maxRotation = 0;
 
   public float starSize = 0.01f;
+  public bool compensatePerspective = true;
 
   public float clipXMin = 0;
   public float clipXMax = 1;
@@ -93,7 +94,7 @@ public class Stars : MonoBehaviour {
       if (relativePos.z > maxZ) relativePos.z -= frustumDepth;
 
       points[i].position = Camera.main.cameraToWorldMatrix.MultiplyPoint(relativePos);
-      points[i].startSize = relativePos.z*starSize;
+      points[i].startSize = compensatePerspective ? relativePos.z*starSize : starSize;
     }
     star_particleSystem.SetParticles(points, points.Length);
   }

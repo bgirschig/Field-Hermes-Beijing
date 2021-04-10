@@ -13,6 +13,7 @@ public class StarsEditor : Editor
     SerializedProperty maxRotation;
     // 
     SerializedProperty starSize;
+    SerializedProperty starCompensatePerpective;
     // 
     SerializedProperty clipXMin;
     SerializedProperty clipXMax;
@@ -29,6 +30,7 @@ public class StarsEditor : Editor
         maxRotation = serializedObject.FindProperty("maxRotation");
         //
         starSize = serializedObject.FindProperty("starSize");
+        starCompensatePerpective = serializedObject.FindProperty("compensatePerspective");
         //
         clipXMin = serializedObject.FindProperty("clipXMin");
         clipXMax = serializedObject.FindProperty("clipXMax");
@@ -44,6 +46,7 @@ public class StarsEditor : Editor
 
         EditorGUILayout.PropertyField(starCount);
         EditorGUILayout.PropertyField(starSize);
+        EditorGUILayout.PropertyField(starCompensatePerpective);
         MinMaxSlider(minRotation, maxRotation, 0, 180, "Star rotations");
 
         EditorGUILayout.LabelField("Clip Space");
