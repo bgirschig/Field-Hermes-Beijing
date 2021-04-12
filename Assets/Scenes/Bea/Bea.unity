@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: cb79c455f54a64ce284c84606e096295, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3731193, g: 0.38073996, b: 0.35872698, a: 1}
+  m_IndirectSpecularColor: {r: 0.0012466137, g: 0.0012466137, b: 0.0012466137, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1348,7 +1348,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 007c8912a381140f1acd24ddb3792a56,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 007c8912a381140f1acd24ddb3792a56,
         type: 3}
@@ -1358,7 +1358,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 007c8912a381140f1acd24ddb3792a56,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -242.5
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 007c8912a381140f1acd24ddb3792a56,
         type: 3}
@@ -14201,7 +14201,7 @@ Camera:
   m_GameObject: {fileID: 718562707}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 2
+  m_ClearFlags: 1
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 2
   m_GateFitMode: 2
@@ -25245,7 +25245,7 @@ PrefabInstance:
     - target: {fileID: 2069320669634855739, guid: 852c87e18ef939a40980ba68e1342824,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.51
+      value: 2.01
       objectReference: {fileID: 0}
     - target: {fileID: 2069320669634855739, guid: 852c87e18ef939a40980ba68e1342824,
         type: 3}
@@ -25255,7 +25255,7 @@ PrefabInstance:
     - target: {fileID: 2069320669634855739, guid: 852c87e18ef939a40980ba68e1342824,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 144.006
+      value: 139.99
       objectReference: {fileID: 0}
     - target: {fileID: 2069320669634855739, guid: 852c87e18ef939a40980ba68e1342824,
         type: 3}
