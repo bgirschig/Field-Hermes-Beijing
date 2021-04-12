@@ -8,3 +8,4 @@
 *.bundle/Contents/MacOS/OpenCvSharpExtern filter=lfs diff=lfs merge=lfs -text
 *.gif filter=lfs diff=lfs merge=lfs -text
 *.blend filter=lfs diff=lfs merge=lfs -text
+*.hdr filter=lfs diff=lfs merge=lfs -text
