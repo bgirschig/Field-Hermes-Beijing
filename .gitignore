@@ -70,3 +70,4 @@ crashlytics-build.properties
 
 # Custom ignores
 *.blend1
+__pycache__
