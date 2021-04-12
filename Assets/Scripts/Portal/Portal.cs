@@ -1,58 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
+// A portal object
+// This only keeps a reference to the portal target and triggers teleport on collider events.
+// Teleport and portal transform logic happen in PortalItem
+
 using UnityEngine;
-using UnityTemplateProjects;
-using System;
 
 [ExecuteInEditMode()]
 public class Portal : MonoBehaviour
 {
     public Transform target;
-    [NonSerialized]
-    public bool isActive = false;
     public Portal nextPortal;
 
-    private Camera portalCamera;
-    private static Portal activePortal;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        portalCamera = GameObject.FindGameObjectWithTag("portal camera").GetComponent<Camera>();
-    }
-
-    void Update()
-    {
-        if (!isActive) return;
-        if (target != null && portalCamera != null) {
-            Vector3 cameraLocalPosition = transform.InverseTransformPoint(Camera.main.transform.position);
-            portalCamera.transform.position = target.TransformPoint(cameraLocalPosition);
-
-            Vector3 cameraLocalForward = transform.InverseTransformDirection(Camera.main.transform.forward);
-            Vector3 cameraLocalUp = transform.InverseTransformDirection(Camera.main.transform.up);
-            portalCamera.transform.rotation = Quaternion.LookRotation(
-                target.TransformDirection(cameraLocalForward),
-                target.TransformDirection(cameraLocalUp));
-        }
-    }
+    public static Portal current;
 
     void OnTriggerEnter (Collider other) {
-		if (other.tag == "MainCamera") {
-            SimpleCameraController cameraController = Camera.main.GetComponent<SimpleCameraController>();
-            if (cameraController != null && cameraController.enabled) {
-                cameraController.TeleportTo(portalCamera.transform);
-            } else {
-                Camera.main.transform.position = portalCamera.transform.position;
-                Camera.main.transform.rotation = portalCamera.transform.rotation;
-                Camera.main.transform.localScale = portalCamera.transform.localScale;
-            }
-            if (nextPortal != null) nextPortal.activate();
-        }
+        PortalItem otherItem = other.GetComponent<PortalItem>();
+        if (otherItem == null) return;
+        if (otherItem.isTrigger && nextPortal != null) nextPortal.activate();
+        if (otherItem.teleport) otherItem.teleportToTwin();
 	}
 
     void OnDrawGizmos() {
         if (target != null) {
-            Gizmos.color = isActive ? Color.magenta : new Color(0.4f, 0, 0.4f);
+            Gizmos.color = current == this ? Color.magenta : new Color(0.4f, 0, 0.4f);
             Vector3 offsetPoint = transform.TransformPoint(new Vector3(0,0,1));
             Vector3 targetOffsetPoint = target.TransformPoint(new Vector3(0,0,-1));
             Gizmos.DrawLine(transform.position, offsetPoint);
@@ -60,25 +29,20 @@ public class Portal : MonoBehaviour
             Gizmos.DrawLine(targetOffsetPoint, target.transform.position);
         }
 
-        // if (isActive && target != null) {
-        //     Gizmos.color = Color.magenta;
-        //     Gizmos.DrawSphere(portalCamera.transform.position, 0.3f);
-        // }
-
         if (nextPortal != null && target != null) {
             Gizmos.color = new Color(0.5f,0.5f,1f);
             Gizmos.DrawLine(target.transform.position, nextPortal.transform.position);
         }
-
     }
 
+    /// <summary>Make this portal the current active one.
+    /// PortalItems will be positionned relative to this portal</summary>
     public void activate() {
-        if (activePortal != null) activePortal.deactivate();
-        activePortal = this;
-        isActive = true;
+        if (current != null) current.deactivate();
+        current = this;
     }
+
     public void deactivate() {
-        isActive = false;
-        if (activePortal == this) activePortal = null;
+        if (current == this) current = null;
     }
 }

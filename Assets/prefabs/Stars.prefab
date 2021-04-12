@@ -4821,6 +4821,7 @@ MonoBehaviour:
   minRotation: 0
   maxRotation: 0
   starSize: 0.002
+  compensatePerspective: 1
   clipXMin: 0
   clipXMax: 1
   clipYMin: 0.4619566

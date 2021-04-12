@@ -2,6 +2,7 @@ Shader "Unlit/star"
 {
     Properties {
         _MainColor ("Color", Color) = (1,1,1,1)
+        fogDensity ("Fog Density", float) = 0.5
     }
     SubShader
     {
@@ -16,6 +17,7 @@ Shader "Unlit/star"
             #include "UnityCG.cginc"
 
             float4 _MainColor;
+            float fogDensity;
 
             struct appdata
             {
@@ -39,7 +41,10 @@ Shader "Unlit/star"
 
             fixed4 frag (v2f i) : SV_Target
             {
-                return _MainColor;
+                float dist = i.vertex.z * _ProjectionParams.z;
+                float fog = smoothstep(fogDensity, 0.0, dist);
+
+                return lerp(_MainColor, float4(0,0,0,1), fog);
             }
             ENDCG
         }
