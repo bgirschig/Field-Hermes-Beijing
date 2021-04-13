@@ -1,59 +1,62 @@
 // Detects the horizontal position of a bright(er) object in a webcam input
 
 using UnityEngine;
-using UnityEngine.UI;
 using OpenCvSharp;
 using System.Threading;
 using System.Diagnostics;
 using System.Collections.Generic;
+using System;
+
 public class Detector : MonoBehaviour
 {
+    // Inspector settings
     public Texture2D mask;
-    public ViewOption view;
+    public SharedWebcam webcam;
 
-    WebCamTexture capture; // The webcam capture
-    RawImage image; // target image for cvImage
+    // output
+    [NonSerialized]
+    public float position = 0;
 
+    // Textures
     Mat cvImage; // openCV image, where we'll write the camera before each detector-frame, then pass to the detector
-    Mat debugImg; // debug Image, for viewing whats going on inside the detector
-    Mat maskMat;
+    Mat maskMat; // Mask texture (/matrix)
     Mat pixelCounts; // unmasked pixel count for each pixel column in the captured image
+    Mat debugImg; // debug Image, for viewing whats going on inside the detector
+    [NonSerialized]
+    public Texture debugTexture; // In order to access the debug image from other components, it
+                                 // needs to be in the 'Texture' format we'll do the conversion
+                                 // after the detector is done with a frame and before starting the
+                                 // next one
 
-    Thread thread;
-    bool threadWorking; // This is set to true when the detector starts working on a frame and false once it's ready to start a new one
+    // Loop & thread management
     bool cameraHasNewFrame;
+    Thread thread;
+    bool threadWorking; // This is set to true when the detector starts working on a frame and false
+                        // once it's ready to start a new one
 
-    public byte max = 0;
-    public int maxIndex = 0;
-
-    // profiling
-    float framerate = 0;
+    // Profiling
+    [NonSerialized]
+    public float framerate = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        image = GetComponent<RawImage>();
-        capture = new WebCamTexture(WebCamTexture.devices[0].name);
-        capture.Play();
-
-        debugImg = new Mat(1, capture.width, MatType.CV_8UC3);
-        cvImage = OpenCvSharp.Unity.TextureToMat(capture);
-
         thread = new Thread(detectorLoop);
         thread.Start();
+        webcam.onCameraChange.AddListener(updateInput);
     }
 
     // Update is called once per frame
     void Update()
     {
         if (shouldUpdateMask()) updateMask();
-        if (capture.didUpdateThisFrame) cameraHasNewFrame = true;
-        if (!threadWorking && enabled) {
-            updateViewer();
 
+        if (webcam.didUpdateThisFrame) cameraHasNewFrame = true;
+        if (!threadWorking && enabled) {
+            if (debugImg != null) debugTexture = OpenCvSharp.Unity.MatToTexture(debugImg);
             if (cameraHasNewFrame) {
                 // prepare new detector frame (Here we do what can't be done in the thread, eg. accessing unity textures)
-                cvImage = OpenCvSharp.Unity.TextureToMat(capture);
+                cvImage = OpenCvSharp.Unity.TextureToMat(webcam.capture).Clone();
                 cameraHasNewFrame = false;
                 // Start new detector frame
                 threadWorking = true;
@@ -62,8 +65,9 @@ public class Detector : MonoBehaviour
     }
 
     bool shouldUpdateMask() {
+        if (!webcam.ready) return false;
         if (mask) {
-            return maskMat == null || maskMat.Width != capture.width || maskMat.Height != capture.height;
+            return maskMat == null || maskMat.Width != webcam.width || maskMat.Height != webcam.height;
         } else {
             return maskMat != null || pixelCounts != null;
         }
@@ -79,11 +83,11 @@ public class Detector : MonoBehaviour
             Cv2.CvtColor(maskMat, maskMat, ColorConversionCodes.BGR2GRAY);
 
             // Resize mask to fit camera
-            if (capture.width != maskMat.Width || capture.height != maskMat.Height) {
-                Cv2.Resize(maskMat, maskMat, new Size(capture.width, capture.height));
+            if (webcam.width != maskMat.Width || webcam.height != maskMat.Height) {
+                Cv2.Resize(maskMat, maskMat, new Size(webcam.width, webcam.height));
                 UnityEngine.Debug.LogWarningFormat(
                     "The mask shape ({0}, {1}) does not match the camera shape ({2}, {3}). The mask was scaled to fit",
-                    mask.width, mask.height, capture.width, capture.height);
+                    mask.width, mask.height, webcam.width, webcam.height);
             }
 
             // Count unmasked pixels in each column
@@ -93,32 +97,9 @@ public class Detector : MonoBehaviour
         }
     }
 
-    void updateViewer() {
-        switch (view)
-        {
-            case ViewOption.CAPTURE:
-                image.texture = capture;
-                image.rectTransform.sizeDelta = new Vector2(image.texture.width, image.texture.height);
-            break;
-            case ViewOption.CV_IMAGE:
-                image.texture = OpenCvSharp.Unity.MatToTexture(debugImg);
-                image.rectTransform.sizeDelta = new Vector2(image.texture.width, Mathf.Max(image.texture.height, 200));
-            break;
-            default:
-            break;
-        }
-    }
-
-    void OnGUI()
-    {
-        var style = new GUIStyle();
-        style.fontSize = Screen.width/20;
-        style.normal.textColor = new Color(255,255,255);
-        GUI.TextArea(
-            new UnityEngine.Rect(10, 10, 200, 50),
-            string.Format("Detector framerate: {0:0.0}", framerate),
-            style
-        );
+    void updateInput() {
+        debugImg = new Mat(1, webcam.capture.width, MatType.CV_8UC3);
+        cvImage = OpenCvSharp.Unity.TextureToMat(webcam.capture);
     }
 
     private void detectorLoop() {
@@ -156,6 +137,9 @@ public class Detector : MonoBehaviour
             var indexer = new Mat.Indexer<byte>(cvImage);
             int adaptativeThreshold = (int)((prevMax + prevAverage) / 2);
 
+            int? best_peak_idx = null;
+            float best_peak_brightness = 0;
+
             for (int x = 0; x < cvImage.Width; x++)
             {
                 // This is costly. Do it as little as possible
@@ -177,6 +161,10 @@ public class Detector : MonoBehaviour
                             (int)(peak_start+x)/2,
                             peak_max
                         ));
+                        if (peak_max > best_peak_brightness) {
+                            best_peak_brightness = peak_max;
+                            best_peak_idx = peaks.Count - 1;
+                        }
                     }
                     peak_start = null;
                     peak_max = 0;
@@ -194,10 +182,13 @@ public class Detector : MonoBehaviour
                 Cv2.Line(debugImg, peaks[idx].Item1, 0, peaks[idx].Item1, 50, new Scalar(0,peaks[idx].Item2*255,0), 2);
             }
 
+            // Update the final detector value
+            if (best_peak_idx != null) {
+                position = (float)peaks[(int)best_peak_idx].Item1 / cvImage.Width;
+            }
+
             framerate = (float)(1000/stopWatch.Elapsed.TotalMilliseconds);
             threadWorking = false;
         }
     }
-
-    public enum ViewOption { CAPTURE, CV_IMAGE }
 }
