@@ -379,13 +379,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 294327433}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1678d1d0253c44f08cd5b6104699f7f, type: 3}
+  m_Script: {fileID: 11500000, guid: bbd35009eb2314dabbff097baec99c39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   detector: {fileID: 365374266}
-  speed: 1
-  forwardBias: 1.5
+  mode: 2
+  overallSpeed: 1
+  forwardBias: 1.8
   smoothTime: 0.1
+  shiftMultiplier: 2
+  sinePeriod: 4
+  emulatorSpeed: 0.5
 --- !u!81 &294327438
 AudioListener:
   m_ObjectHideFlags: 0
@@ -581,10 +585,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1678d1d0253c44f08cd5b6104699f7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detector: {fileID: 365374266}
-  speed: 2
-  forwardBias: 1.5
-  smoothTime: 0.05
 --- !u!1 &451709928
 GameObject:
   m_ObjectHideFlags: 0
@@ -1757,7 +1757,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2067490304}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 776a797523607432d81ff3def4269876, type: 3}
+  m_Script: {fileID: 11500000, guid: a949915f030c847d697ee1c93b3a87c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   detector: {fileID: 365374266}

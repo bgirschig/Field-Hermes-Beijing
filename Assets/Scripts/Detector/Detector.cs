@@ -36,10 +36,6 @@ public class Detector : MonoBehaviour
     float lastRawPosition = 0;
     float positionSmoothSpeed = 0;
     float positionSmoothDuration = 0.01f;
-    //   speed
-    float lastRawSpeed = 0;
-    float speedSmoothSpeed = 0;
-    float speedSmoothDuration = 0.2f;
 
     // Start is called before the first frame update
     void Start()
