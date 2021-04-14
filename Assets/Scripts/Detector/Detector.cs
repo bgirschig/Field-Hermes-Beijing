@@ -33,6 +33,8 @@ public class Detector : MonoBehaviour
     Thread thread;
     bool threadWorking; // This is set to true when the detector starts working on a frame and false
                         // once it's ready to start a new one
+    [NonSerialized]
+    public bool maskNeedsUpdate = false;
 
     // Profiling
     [NonSerialized]
@@ -67,7 +69,7 @@ public class Detector : MonoBehaviour
     bool shouldUpdateMask() {
         if (!webcam.ready) return false;
         if (mask) {
-            return maskMat == null || maskMat.Width != webcam.width || maskMat.Height != webcam.height;
+            return maskNeedsUpdate || maskMat == null || maskMat.Width != webcam.width || maskMat.Height != webcam.height;
         } else {
             return maskMat != null || pixelCounts != null;
         }
