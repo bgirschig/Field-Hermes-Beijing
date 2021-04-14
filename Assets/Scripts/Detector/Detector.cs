@@ -16,11 +16,12 @@ public class Detector : MonoBehaviour
 
     // output
     [NonSerialized]
-    public float position = 0;
-    [NonSerialized]
     public float speed = 0;
     [NonSerialized]
+    public float smoothedSpeed = 0;
+    [NonSerialized]
     public UnityEvent onMaskChange = new UnityEvent();
+    public float smoothedPosition;
 
     // Textures
     [NonSerialized]
@@ -29,9 +30,16 @@ public class Detector : MonoBehaviour
                                  // after the detector is done with a frame and before starting the
                                  // next one
 
-    float prevPosition = 0;
-    float prevDetectorTime = 0;
-
+    // Smoothing
+    float lastDetectionTime = 0;
+    //   position
+    float lastRawPosition = 0;
+    float positionSmoothSpeed = 0;
+    float positionSmoothDuration = 0.01f;
+    //   speed
+    float lastRawSpeed = 0;
+    float speedSmoothSpeed = 0;
+    float speedSmoothDuration = 0.2f;
 
     // Start is called before the first frame update
     void Start()
@@ -53,14 +61,16 @@ public class Detector : MonoBehaviour
             debugTexture = OpenCvSharp.Unity.MatToTexture(detectorCore.debugImg);
         }
         if (webcam.didUpdateThisFrame) {
-            float time = Time.time;
-            position = detectorCore.detect(OpenCvSharp.Unity.TextureToMat(webcam.capture));
+            float deltaTime = Time.time - lastDetectionTime;
+            lastDetectionTime = Time.time;
+            float position = detectorCore.detect(OpenCvSharp.Unity.TextureToMat(webcam.capture));
 
-            speed = (position - prevPosition) / (time - prevDetectorTime);
-
-            prevDetectorTime = time;
-            prevPosition = position;
+            float rawSpeed = (position - lastRawPosition) / deltaTime;
+            speed = rawSpeed;
+            lastRawPosition = position;
         }
+
+        smoothedPosition = Mathf.SmoothDamp(smoothedPosition, lastRawPosition, ref positionSmoothSpeed, positionSmoothDuration);
     }
 
     void OnCameraChange() {

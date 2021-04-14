@@ -26,15 +26,15 @@ public class DetectorView : MonoBehaviour
 
     void OnGUI()
     {
-        var style = new GUIStyle();
-        style.fontSize = Screen.width/20;
-        style.normal.textColor = new Color(255,255,255);
-        GUI.TextArea(
-            new UnityEngine.Rect(10, 10, 200, 50),
-            string.Format(
-                $"Detected postion: {detector.position :0.00}\n"+
-                $"Detector framerate: {detector.detectorCore.framerate :0}"),
-            style
-        );
+        // var style = new GUIStyle();
+        // style.fontSize = Screen.width/20;
+        // style.normal.textColor = new Color(255,255,255);
+        // GUI.TextArea(
+        //     new UnityEngine.Rect(10, 10, 200, 50),
+        //     string.Format(
+        //         $"Detected postion: {detector.smoothedPosition :0.00}\n"+
+        //         $"Detector framerate: {detector.detectorCore.framerate :0}"),
+        //     style
+        // );
     }
 }
