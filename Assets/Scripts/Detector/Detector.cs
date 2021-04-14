@@ -6,22 +6,27 @@ using System.Threading;
 using System.Diagnostics;
 using System.Collections.Generic;
 using System;
+using System.IO;
+using UnityEngine.Events;
 
 public class Detector : MonoBehaviour
 {
     // Inspector settings
-    public Texture2D mask;
     public SharedWebcam webcam;
 
     // output
     [NonSerialized]
     public float position = 0;
+    [NonSerialized]
+    public UnityEvent onMaskChange = new UnityEvent();
 
     // Textures
     Mat cvImage; // openCV image, where we'll write the camera before each detector-frame, then pass to the detector
-    Mat maskMat; // Mask texture (/matrix)
+    Mat maskMat; // Mask CvImage, prepared for use (scaled to fit camera, etc...)
     Mat pixelCounts; // unmasked pixel count for each pixel column in the captured image
     Mat debugImg; // debug Image, for viewing whats going on inside the detector
+    [NonSerialized]
+    public Mat originalMaskMat; // original Mask CvImage
     [NonSerialized]
     public Texture debugTexture; // In order to access the debug image from other components, it
                                  // needs to be in the 'Texture' format we'll do the conversion
@@ -46,15 +51,16 @@ public class Detector : MonoBehaviour
         thread = new Thread(detectorLoop);
         thread.Start();
         webcam.onCameraChange.AddListener(updateInput);
+        LoadMaskFromDisk();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (shouldUpdateMask()) updateMask();
 
         if (webcam.didUpdateThisFrame) cameraHasNewFrame = true;
         if (!threadWorking && enabled) {
+            if (shouldUpdateMask()) updateMask();
             if (debugImg != null) debugTexture = OpenCvSharp.Unity.MatToTexture(debugImg);
             if (cameraHasNewFrame) {
                 // prepare new detector frame (Here we do what can't be done in the thread, eg. accessing unity textures)
@@ -68,28 +74,27 @@ public class Detector : MonoBehaviour
 
     bool shouldUpdateMask() {
         if (!webcam.ready) return false;
-        if (mask) {
-            return maskNeedsUpdate || maskMat == null || maskMat.Width != webcam.width || maskMat.Height != webcam.height;
-        } else {
-            return maskMat != null || pixelCounts != null;
-        }
+        if (maskNeedsUpdate) return true;
+        if (maskMat != null && (maskMat.Width != webcam.width || maskMat.Height != webcam.height)) return true;
+        return false;
     }
 
     void updateMask() {
-        if (mask == null) {
+        if (originalMaskMat == null) {
             maskMat = null;
             pixelCounts = null;
-        } else {
-            // Load mask into an openCV image
-            maskMat = OpenCvSharp.Unity.TextureToMat(mask);
+        }
+
+        if (originalMaskMat != null) {
+            maskMat = originalMaskMat.Clone();
             Cv2.CvtColor(maskMat, maskMat, ColorConversionCodes.BGR2GRAY);
 
             // Resize mask to fit camera
             if (webcam.width != maskMat.Width || webcam.height != maskMat.Height) {
                 Cv2.Resize(maskMat, maskMat, new Size(webcam.width, webcam.height));
-                UnityEngine.Debug.LogWarningFormat(
-                    "The mask shape ({0}, {1}) does not match the camera shape ({2}, {3}). The mask was scaled to fit",
-                    mask.width, mask.height, webcam.width, webcam.height);
+                UnityEngine.Debug.LogWarning(
+                    $"The mask shape ({maskMat.Width}, {maskMat.Height}) does not match the camera " +
+                    $"shape ({webcam.width}, {webcam.height}). The mask was scaled to fit");
             }
 
             // Count unmasked pixels in each column
@@ -97,6 +102,8 @@ public class Detector : MonoBehaviour
             Cv2.Reduce(maskMat, pixelCounts, ReduceDimension.Row, ReduceTypes.Sum, MatType.CV_32FC1);
             pixelCounts = pixelCounts/255;
         }
+
+        onMaskChange.Invoke();
     }
 
     void updateInput() {
@@ -191,6 +198,29 @@ public class Detector : MonoBehaviour
 
             framerate = (float)(1000/stopWatch.Elapsed.TotalMilliseconds);
             threadWorking = false;
+        }
+    }
+
+    public void SaveMask() {
+        Texture2D texture = OpenCvSharp.Unity.MatToTexture(maskMat);
+        var pngBytes = texture.EncodeToPNG();
+        string destination = Path.Combine(Application.persistentDataPath, "mask.png");
+        File.WriteAllBytes(destination, pngBytes);
+    }
+
+    void LoadMaskFromDisk() {
+        string maskPath = Path.Combine(Application.persistentDataPath, "mask.png");
+        if (File.Exists(maskPath)) {
+            // // Using Cv2.ImRead would be much better (no extra conversions, more readable, etc...)
+            // // but for some reason, that method silently fails (returns a 0x0 Mat)
+            // originalMaskMat = OpenCvSharp.Cv2.ImRead(maskPath);
+            
+            var pngBytes = File.ReadAllBytes(maskPath);
+            var loaderTexture = new Texture2D(2,2);
+            loaderTexture.LoadImage(pngBytes);
+            originalMaskMat = OpenCvSharp.Unity.TextureToMat(loaderTexture);
+            
+            maskNeedsUpdate = true;
         }
     }
 }
