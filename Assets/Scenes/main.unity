@@ -317,6 +317,7 @@ GameObject:
   - component: {fileID: 294327435}
   - component: {fileID: 294327434}
   - component: {fileID: 294327441}
+  - component: {fileID: 294327437}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -349,12 +350,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 294327433}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7f692cea9496798409d73ca7122c8473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: {x: 0, y: 0, z: 6}
+  shiftSpeed: {x: 0, y: 0, z: 0}
 --- !u!135 &294327436
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -368,6 +370,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.41
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &294327437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 294327433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1678d1d0253c44f08cd5b6104699f7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detector: {fileID: 365374266}
 --- !u!81 &294327438
 AudioListener:
   m_ObjectHideFlags: 0
@@ -464,6 +479,9 @@ GameObject:
   - component: {fileID: 365374263}
   - component: {fileID: 365374265}
   - component: {fileID: 365374264}
+  - component: {fileID: 365374267}
+  - component: {fileID: 365374266}
+  - component: {fileID: 365374268}
   m_Layer: 0
   m_Name: Game
   m_TagString: Untagged
@@ -521,6 +539,45 @@ MonoBehaviour:
     mess up stuff.'
   showInScene: 0
   pos: {x: 20, y: 20}
+--- !u!114 &365374266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 365374262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e4861f336edf0b4792349d533b83c2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  webcam: {fileID: 365374267}
+--- !u!114 &365374267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 365374262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9324abe754a8944d78c35bf74fa786ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultCameraIndex: 1
+--- !u!114 &365374268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 365374262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1678d1d0253c44f08cd5b6104699f7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detector: {fileID: 365374266}
 --- !u!1 &451709928
 GameObject:
   m_ObjectHideFlags: 0

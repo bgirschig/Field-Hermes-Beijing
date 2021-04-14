@@ -11,6 +11,8 @@ using UnityEngine.Events;
 
 public class SharedWebcam : MonoBehaviour
 {
+    public int defaultCameraIndex;
+
     [NonSerialized]
     public UnityEvent onCameraChange = new UnityEvent();
 
@@ -40,7 +42,7 @@ public class SharedWebcam : MonoBehaviour
     void Start()
     {
         if (currentCamera != null) setCamera(currentCamera);
-        else setCamera(0);
+        else setCamera(defaultCameraIndex);
     }
 
     void Update() {
@@ -63,11 +65,18 @@ public class SharedWebcam : MonoBehaviour
         capture = new WebCamTexture(deviceName);
         capture.Play();
         currentCamera = deviceName;
-
+        print($"Starting camera: {currentCamera}");
         waitingCameraInit = true;
     }
 
     void setCamera(int deviceIndex) {
+        int deviceCount = WebCamTexture.devices.Length;
+        deviceIndex %= deviceCount;
+
+        if (WebCamTexture.devices[deviceIndex].name == "OBS Virtual Camera") {
+            deviceIndex = (deviceIndex + 1) % deviceCount;
+        }
+
         string deviceName = WebCamTexture.devices[deviceIndex].name;
         setCamera(deviceName);
     }

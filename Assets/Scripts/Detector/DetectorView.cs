@@ -31,7 +31,9 @@ public class DetectorView : MonoBehaviour
         style.normal.textColor = new Color(255,255,255);
         GUI.TextArea(
             new UnityEngine.Rect(10, 10, 200, 50),
-            string.Format("Detector framerate: {0:0.0}, {1:0.00}", detector.framerate, detector.position),
+            string.Format(
+                $"Detected postion: {detector.position :0.00}\n"+
+                $"Detector framerate: {detector.detectorCore.framerate :0}"),
             style
         );
     }
