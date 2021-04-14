@@ -17,10 +17,6 @@ public class CameraSwing : MonoBehaviour
     float currentVelocity = 0;
     float maxSpeed = 30;
 
-    void Start()
-    {
-    }
-
     void Update()
     {
         if (detector.speed > 0) {
@@ -33,16 +29,4 @@ public class CameraSwing : MonoBehaviour
         smoothedPosition = Mathf.SmoothDamp(smoothedPosition, targetPosition, ref currentVelocity, smoothTime);
         transform.Translate(0, 0, prevSmoothedPosition - smoothedPosition);
     }
-
-    // void OnGUI()
-    // {
-    //     var style = new GUIStyle();
-    //     style.fontSize = Screen.width/20;
-    //     style.normal.textColor = new Color(255,255,255);
-    //     GUI.TextArea(
-    //         new UnityEngine.Rect(10, 10, 200, 50),
-    //         $"{detector.speed}\n{detector.smoothedPosition}",
-    //         style
-    //     );
-    // }
 }
