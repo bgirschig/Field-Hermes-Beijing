@@ -18,8 +18,8 @@ public class CameraSwing : MonoBehaviour
     public float shiftMultiplier = 6;
 
     [Header("Emulator settings")]
-    [Tooltip("How fast should the Sine emulator oscilate")]
-    public float sinePeriod = 2;
+    [Tooltip("Simulated length of the pendulum for the sine emulator")]
+    public float pendulumLength = 2;
     [Tooltip("Adjust the speed of the emulators. This is combined with the overallSpeed setting")]
     public float emulatorSpeed = 0.1f;
     
@@ -27,6 +27,7 @@ public class CameraSwing : MonoBehaviour
     float smoothedPosition = 0;
     float prevSmoothedPosition = 0;
     float currentVelocity = 0;
+    float gravity = 9.81f;
 
     void Update()
     {
@@ -40,7 +41,9 @@ public class CameraSwing : MonoBehaviour
                 speed = emulatorSpeed;
                 break;
             case Mode.SINE_EMULATOR:
-                speed = Mathf.Sin(2 * Mathf.PI * Time.time / sinePeriod) * emulatorSpeed;
+                float period = 2 * Mathf.PI * Mathf.Sqrt(pendulumLength / gravity);
+                float amplitude = 1;
+                speed = Mathf.Sin(2 * Mathf.PI * Time.time / period) * (amplitude / period);
                 break;
             default:
                 Debug.LogError("Unexpected camera swing mode");
