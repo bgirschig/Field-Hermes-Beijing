@@ -33,7 +33,6 @@ public class BlitEffect : MonoBehaviour {
 
     void Start() {
         cam = GetComponent<Camera>();
-        depthTextureMode = cam.depthTextureMode;
         cam.depthTextureMode = depthTextureMode;
 
         UpdateRenderablesList();
@@ -124,6 +123,10 @@ public class BlitEffect : MonoBehaviour {
         silhouetteBlack.SetColor("_mainColor", Color.black);
         silhouetteWhite = new Material(shader);
         silhouetteWhite.SetColor("_mainColor", Color.white);
+    }
+
+    void Reset() {
+        depthTextureMode = cam.depthTextureMode;
     }
 
     void OnValidate() {
