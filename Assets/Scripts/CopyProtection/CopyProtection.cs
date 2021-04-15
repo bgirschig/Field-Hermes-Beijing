@@ -38,15 +38,15 @@ public class CopyProtection : MonoBehaviour {
         }
 
         if (violation != null) {
+            foreach (var item in disableGameobjects) {
+                item.SetActive(false);
+            }
+            if (violationUI != null) violationUI.showViolation(violation);
+
             Debug.LogError(
                 $"{violation.message}. Please contact {Application.companyName} to resolve the issue\n"+
                 $"  device ID: {SystemInfo.deviceUniqueIdentifier}\n"+
                 $"  device name: {SystemInfo.deviceName}\n");
-            
-            foreach (var gameobject in disableGameobjects) {
-                gameObject.SetActive(false);
-            }
-            if (violationUI != null) violationUI.showViolation(violation);
         }
     }
 
