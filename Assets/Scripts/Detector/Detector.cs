@@ -61,8 +61,10 @@ public class Detector : MonoBehaviour
             lastDetectionTime = Time.time;
             float position = detectorCore.detect(OpenCvSharp.Unity.TextureToMat(webcam.capture));
 
-            float rawSpeed = (position - lastRawPosition) / deltaTime;
-            speed = rawSpeed;
+            if (deltaTime > 0) {
+                float rawSpeed = (position - lastRawPosition) / deltaTime;
+                speed = rawSpeed;
+            }
             lastRawPosition = position;
         }
 
