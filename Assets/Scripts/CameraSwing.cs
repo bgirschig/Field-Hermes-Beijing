@@ -20,8 +20,8 @@ public class CameraSwing : MonoBehaviour
     [Header("Emulator settings")]
     [Tooltip("Simulated length of the pendulum for the sine emulator")]
     public float pendulumLength = 2;
-    [Tooltip("Adjust the speed of the emulators. This is combined with the overallSpeed setting")]
-    public float emulatorSpeed = 0.1f;
+    [Tooltip("Adjust the speed of the linear forward emulator. This is combined with the overallSpeed setting")]
+    public float linearForwartSpeed = 0.1f;
     
     float targetPosition = 0;
     float smoothedPosition = 0;
@@ -38,7 +38,7 @@ public class CameraSwing : MonoBehaviour
                 speed = detector.speed;
                 break;
             case Mode.LINEAR_FORWARD:
-                speed = emulatorSpeed;
+                speed = linearForwartSpeed;
                 break;
             case Mode.SINE_EMULATOR:
                 float period = 2 * Mathf.PI * Mathf.Sqrt(pendulumLength / gravity);
@@ -54,9 +54,9 @@ public class CameraSwing : MonoBehaviour
         if (shiftPressed) speed *= shiftMultiplier;
 
         if (speed > 0) {
-            targetPosition += speed * overallSpeed * forwardBias;
+            targetPosition += speed * overallSpeed * forwardBias * Time.deltaTime;
         } else {
-            targetPosition += speed * overallSpeed;
+            targetPosition += speed * overallSpeed * Time.deltaTime;
         }
 
         prevSmoothedPosition = smoothedPosition;

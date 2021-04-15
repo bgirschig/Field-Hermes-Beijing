@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311947, g: 0.38074005, b: 0.35872722, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -369,12 +369,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   detector: {fileID: 365374266}
   mode: 0
-  overallSpeed: 2
+  overallSpeed: 40
   forwardBias: 1.8
   smoothTime: 0.1
-  shiftMultiplier: 2
+  shiftMultiplier: 5
   pendulumLength: 6
-  emulatorSpeed: 0.5
+  linearForwartSpeed: 0.1
 --- !u!81 &294327438
 AudioListener:
   m_ObjectHideFlags: 0
