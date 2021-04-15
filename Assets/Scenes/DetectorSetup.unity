@@ -533,7 +533,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9324abe754a8944d78c35bf74fa786ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultCameraIndex: 3
+  defaultCameraIndex: 0
 --- !u!114 &763211059
 MonoBehaviour:
   m_ObjectHideFlags: 0
