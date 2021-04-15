@@ -95,6 +95,12 @@ public class Detector : MonoBehaviour
             
             detectorCore.setMask(OpenCvSharp.Unity.TextureToMat(loaderTexture));
             onMaskChange.Invoke();
+        } else {
+            if (webcam.ready) {
+                detectorCore.setMask(new OpenCvSharp.Mat(webcam.width, webcam.height, OpenCvSharp.MatType.CV_8UC3));
+            } else {
+                detectorCore.setMask(new OpenCvSharp.Mat(512, 512, OpenCvSharp.MatType.CV_8UC3));
+            }
         }
     }
 }
