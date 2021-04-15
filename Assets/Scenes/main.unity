@@ -7426,6 +7426,7 @@ MonoBehaviour:
   forwardBias: 1.8
   smoothTime: 0.1
   shiftMultiplier: 5
+  maxSpeed: 0.6
   pendulumLength: 6
   linearForwartSpeed: 0.1
 --- !u!81 &294327438

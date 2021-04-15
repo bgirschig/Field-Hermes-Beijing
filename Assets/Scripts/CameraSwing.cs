@@ -16,6 +16,8 @@ public class CameraSwing : MonoBehaviour
     public float smoothTime = 0.1f;
     [Tooltip("When holding the shift key down, all speed settings will be multiplied by this much")]
     public float shiftMultiplier = 6;
+    [Tooltip("Max speed in any direction. Applies to all speeds")]
+    public float maxSpeed = 6;
 
     [Header("Emulator settings")]
     [Tooltip("Simulated length of the pendulum for the sine emulator")]
@@ -52,6 +54,9 @@ public class CameraSwing : MonoBehaviour
 
         bool shiftPressed = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
         if (shiftPressed) speed *= shiftMultiplier;
+
+        if (speed > maxSpeed) speed = maxSpeed;
+        else if (speed < -maxSpeed) speed = -maxSpeed;
 
         if (speed > 0) {
             targetPosition += speed * overallSpeed * forwardBias * Time.deltaTime;
