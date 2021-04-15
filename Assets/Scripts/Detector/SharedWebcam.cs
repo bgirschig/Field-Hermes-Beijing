@@ -62,10 +62,10 @@ public class SharedWebcam : MonoBehaviour
         if (deviceName == currentCamera) return;
         if (deviceName == null) return;
         ready = false;
+        print($"Starting camera: {deviceName}");
         capture = new WebCamTexture(deviceName);
         capture.Play();
         currentCamera = deviceName;
-        print($"Starting camera: {currentCamera}");
         waitingCameraInit = true;
     }
 

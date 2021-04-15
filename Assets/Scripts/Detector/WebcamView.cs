@@ -12,11 +12,9 @@ public class WebcamView : MonoBehaviour
     RawImage image;
     AspectRatioFitter aspectRatioFitter;
 
-    IEnumerator Start() {
+    void Start() {
         image = GetComponent<RawImage>();
         aspectRatioFitter = GetComponent<AspectRatioFitter>();
-        
-        yield return 0; // wait for 'source' to create its event listeners
         source.onCameraChange.AddListener(updateTexture);
     }
 
