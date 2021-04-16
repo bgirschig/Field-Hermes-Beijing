@@ -1,5 +1,3 @@
-https://pastebin.com/0HYnXKLC
-
 ## Stars
 We used to have a dynamic star field, that would "follow" the camera (stars out of view would be
 moved back 'to the other side'). This was to limit the amount of stars needed.
