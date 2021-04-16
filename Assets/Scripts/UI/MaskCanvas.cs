@@ -35,6 +35,8 @@ public class MaskCanvas : MonoBehaviour, IPointerDownHandler
 
         webcam.onCameraChange.AddListener(onCameraChange);
         detector.onMaskChange.AddListener(OnMaskChange);
+        if (webcam.ready) onCameraChange();
+        if (detector.detectorCore.srcMask != null) OnMaskChange();
     }
 
     void onCameraChange() {

@@ -16,9 +16,11 @@ public class WebcamView : MonoBehaviour
         image = GetComponent<RawImage>();
         aspectRatioFitter = GetComponent<AspectRatioFitter>();
         source.onCameraChange.AddListener(updateTexture);
+        if (source.ready) updateTexture();
     }
 
     void updateTexture() {
+        print("updateTexture");
         image.texture = source.capture;
         aspectRatioFitter.aspectRatio = source.ratio;
     }
