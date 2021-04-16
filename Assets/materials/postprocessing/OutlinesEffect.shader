@@ -6,11 +6,15 @@ Shader "Postprocessing/OutlinesEffect"
     Properties
     {
         [HideInInspector]_MainTex ("Texture", 2D) = "white" {}
-        _lineColor ("Outline color", Color) = (1,1,1,1)
+        _lineColor ("Line color", Color) = (1,1,1,1)
+        _lineThickness("Line thickness", Range(0, 10)) = 1
+        [Space]
+        _brightnessOutMin ("Brightness min", Range(0,1)) = 0.6
+        _brightnessOutMax ("Brightness max", Range(0,1)) = 1
+        [Space]
         _brigtnessInfluenceOnLine ("Influence of Brightness on Outline", Range(0,1)) = 1
         _normalInfluenceOnLine ("Influence of Normals on Outline", Range(0,1)) = 1
         _depthInfluenceOnLine ("Influence of Depth on Outline", Range(0,1)) = 1
-        _lineThickness("Line thickness", Range(0, 10)) = 1
     }
     SubShader
     {
@@ -44,6 +48,9 @@ Shader "Postprocessing/OutlinesEffect"
             float _normalInfluenceOnLine;
             float _depthInfluenceOnLine;
             float _lineThickness;
+
+            float _brightnessOutMin;
+            float _brightnessOutMax;
 
             v2f vert (appdata v)
             {
@@ -110,7 +117,7 @@ Shader "Postprocessing/OutlinesEffect"
                 float brightness = sourceColor.r*.3 + sourceColor.g*.59 + sourceColor.b*.11;
 
                 float outline = Edges(i.uv, brightness);
-                float4 output = lerp(map(brightness, 0, 1, 0.6, 1), _lineColor, outline);
+                float4 output = lerp(map(brightness, 0, 1, _brightnessOutMin, _brightnessOutMax), _lineColor, outline);
 
                 float selection = tex2D(_SelectionBuffer, i.uv);
                 float4 masked = lerp(sourceColor, output, selection);

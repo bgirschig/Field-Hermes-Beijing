@@ -73,6 +73,9 @@ Material:
     - _StencilRef: 5
     - _UVSec: 0
     - _ZWrite: 1
+    - _brightnessOutMax: 1
+    - _brightnessOutMax2: 1
+    - _brightnessOutMin: 0.6
     - _brigtnessInfluenceOnLine: 1
     - _colorOffset: 4.48
     - _depthInfluenceOnLine: 1
