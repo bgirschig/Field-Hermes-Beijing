@@ -14,7 +14,7 @@ Shader "Postprocessing/OutlinesEffect"
         _lineThickness("Line thickness", Range(0, 10)) = 1
         [Space]
         _brightnessOutMin ("Brightness min", Range(0,1)) = 0.6
-        _brightnessOutMax ("Brightness max", Range(0,1)) = 1
+        _brightnessOutMax ("Brightness max", Range(0,5)) = 1
         [Space]
         _brigtnessInfluenceOnLine ("Influence of Brightness on Outline", Range(0,1)) = 1
         _normalInfluenceOnLine ("Influence of Normals on Outline", Range(0,1)) = 1
