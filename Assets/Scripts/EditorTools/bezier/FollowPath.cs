@@ -2,15 +2,14 @@
 using UnityEngine;
 
 [ExecuteInEditMode]
-public class PathPlacer : MonoBehaviour {
+public class FollowPath : MonoBehaviour {
 
-    public PathCreator pathCreator;
+    public BezierPath pathCreator;
     
     [Range(0,1)]
     public float time;
 
     void Update() {
-        pathCreator.computePoints();
         transform.position = pathCreator.GetPointAtTime(time);
     }
 }
