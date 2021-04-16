@@ -9,13 +9,28 @@ public class BezierPathEditor : Editor
     BezierPath bezierPath;
     Vector3 pos;
 
+    SerializedProperty resolution;
+    SerializedProperty spacing;
+
     void OnEnable() {
         bezierPath = (BezierPath)target;
+
+        resolution = serializedObject.FindProperty("bezier.resolution");
+        spacing = serializedObject.FindProperty("bezier.spacing");
     }
 
     void OnSceneGUI() {
         Input();
         Draw();
+    }
+
+    public override void OnInspectorGUI() {
+        serializedObject.Update();
+        EditorGUILayout.PropertyField(resolution);
+        EditorGUILayout.PropertyField(spacing);
+        serializedObject.ApplyModifiedProperties();
+
+        bezierPath.bezier.Recompute();
     }
 
     void Input() {

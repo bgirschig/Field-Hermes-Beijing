@@ -8,9 +8,9 @@ using System;
 public class Bezier {
     [SerializeField]
     public List<Vector3> points;
-    [SerializeField]
+    [SerializeField][Range(0.01f, 5)]
     public float spacing;
-    [SerializeField]
+    [SerializeField][Range(0.01f, 5)]
     public float resolution;
 
     [NonSerialized]
