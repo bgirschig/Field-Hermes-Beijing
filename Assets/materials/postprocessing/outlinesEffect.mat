@@ -55,6 +55,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _noise:
+        m_Texture: {fileID: 2800000, guid: bbabe9c736ad54a4db44ffef36b2b36b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
     - _BumpScale: 1
     - _Cutoff: 0.5
@@ -81,6 +85,7 @@ Material:
     - _depthInfluenceOnLine: 1
     - _distance: 7.72
     - _lineThickness: 0.75
+    - _noiseAmount: 0.381
     - _normalInfluenceOnLine: 0.5
     - _sharpness: 1
     m_Colors:

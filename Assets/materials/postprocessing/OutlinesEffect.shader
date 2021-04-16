@@ -5,7 +5,11 @@ Shader "Postprocessing/OutlinesEffect"
 {
     Properties
     {
-        [HideInInspector]_MainTex ("Texture", 2D) = "white" {}
+        [HideInInspector]
+        _MainTex ("Texture", 2D) = "white" {}
+        _noise ("Noise texture", 2D) = "white" {}
+        _noiseAmount ("Noise amount", Range(0,1)) = 0.1
+        [Space]
         _lineColor ("Line color", Color) = (1,1,1,1)
         _lineThickness("Line thickness", Range(0, 10)) = 1
         [Space]
@@ -39,8 +43,10 @@ Shader "Postprocessing/OutlinesEffect"
             };
 
             sampler2D _MainTex;
+            sampler2D _noise;
             sampler2D _SelectionBuffer;
             sampler2D _CameraDepthNormalsTexture;
+            float _noiseAmount;
             float4 _CameraDepthNormalsTexture_TexelSize;
             float4 _lineColor;
             float _colorOffset;
@@ -118,6 +124,9 @@ Shader "Postprocessing/OutlinesEffect"
 
                 float outline = Edges(i.uv, brightness);
                 float4 output = lerp(map(brightness, 0, 1, _brightnessOutMin, _brightnessOutMax), _lineColor, outline);
+
+                float4 noise = tex2D(_noise, i.uv);
+                output = lerp(output, noise*output, _noiseAmount);
 
                 float selection = tex2D(_SelectionBuffer, i.uv);
                 float4 masked = lerp(sourceColor, output, selection);
