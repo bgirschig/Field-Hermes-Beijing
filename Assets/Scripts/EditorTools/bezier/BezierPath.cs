@@ -29,6 +29,7 @@ public class BezierPath : MonoBehaviour {
         bezier.Recompute();
     }
 
+    #if UNITY_EDITOR
     void OnDrawGizmos() {
         if (UnityEditor.Selection.activeGameObject == this.gameObject) {
             Gizmos.color = Color.green;
@@ -36,6 +37,7 @@ public class BezierPath : MonoBehaviour {
             Gizmos.color = new Color(0,0.7f,0);
         }
 
+        if (bezier.precomputedPoints == null) return;
         Vector3? prevPoint = null;
         Vector3 point;
         foreach(var localPoint in bezier.precomputedPoints) {
@@ -44,6 +46,7 @@ public class BezierPath : MonoBehaviour {
             prevPoint = point;
         }
     }
+    #endif
 
     public Vector3 GetPointAtTime(float time) {
         return transform.TransformPoint(bezier.GetPointAtTime(time));
