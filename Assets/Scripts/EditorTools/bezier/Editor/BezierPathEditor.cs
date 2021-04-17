@@ -35,14 +35,28 @@ public class BezierPathEditor : Editor
 
     void Input() {
         Event guiEvent = Event.current;
-        Ray mouseRay = HandleUtility.GUIPointToWorldRay(guiEvent.mousePosition);
-        Vector3 mousePos = mouseRay.origin + mouseRay.direction*5;
-        // Vector3 mousePosInCamera = SceneView.lastActiveSceneView.camera.transform.InverseTransformPoint(mousePos);
-        // Debug.Log(mousePosInCamera.z);
-
         if (guiEvent.type == EventType.MouseDown && guiEvent.button == 0 && guiEvent.shift) {
-            Undo.RecordObject(bezierPath, "add point");
-            bezierPath.bezier.addSegment(bezierPath.transform.InverseTransformPoint(mousePos));
+            // TODO: It seems there should be a way to simplify this computation of the next point's position
+
+            Ray mouseRay = HandleUtility.GUIPointToWorldRay(guiEvent.mousePosition);
+            Transform currentCamera = SceneView.lastActiveSceneView.camera.transform;
+            
+            // local space
+            Vector3 lastPointPos = bezierPath.bezier.points[bezierPath.bezier.points.Count-1];
+            // world space
+            lastPointPos = bezierPath.transform.TransformPoint(lastPointPos);
+            // camera space
+            lastPointPos = currentCamera.InverseTransformPoint(lastPointPos);
+            // distance to camera (orthographic)
+            float distance = lastPointPos.z;
+
+            Vector3 direction = currentCamera.InverseTransformDirection(mouseRay.direction);
+            float factor = lastPointPos.z / direction.z;
+            Vector3 newPoint = direction * factor;
+            newPoint = currentCamera.TransformPoint(newPoint);
+
+            Undo.RecordObject(bezierPath, $"Add bezier point");
+            bezierPath.bezier.addSegment(bezierPath.transform.InverseTransformPoint(newPoint));
             EditorApplication.QueuePlayerLoopUpdate();
         }
     }
