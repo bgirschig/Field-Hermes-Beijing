@@ -42,6 +42,13 @@ public class Bezier {
         get { return (points.Count - 4) / 3 + 1; }
     }
 
+    public int precomputedPointsCount {
+        get {
+            if (precomputedPoints == null) Recompute();
+            return precomputedPoints.Length;
+        }
+    }
+
     public void addSegment(Vector3 anchorPos) {
         points.Add(points[points.Count-1]*2 - points[points.Count-2]);
         points.Add((points[points.Count-1] + anchorPos) * .5f);
