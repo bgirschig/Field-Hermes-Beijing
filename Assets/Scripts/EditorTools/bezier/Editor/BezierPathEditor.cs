@@ -12,7 +12,6 @@ public class BezierPathEditor : Editor
     SerializedProperty resolution;
     SerializedProperty spacing;
 
-    bool showPoints = false;
     int activeAnchor = -1;
 
     void OnEnable() {

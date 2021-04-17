@@ -10,7 +10,6 @@ public class BezierPlaneFollow : MonoBehaviour
 {
     public BezierPath bezierPath;
     public PlaneComponent target;
-    public bool gizmoPlane;
 
     // Update is called once per frame
     void Update()

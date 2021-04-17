@@ -4,6 +4,7 @@
 
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PortalItem : MonoBehaviour
 {
@@ -14,8 +15,12 @@ public class PortalItem : MonoBehaviour
     [Tooltip("List of component that should be disabled in this gameobject's 'twin'")]
     public string[] disableComponentsInTwin = { "AudioListener", "Collider" };
 
-    private GameObject twin;
-    private static Transform itemsParent;
+    [NonSerialized]
+    public UnityEvent onTeleport = new UnityEvent();
+
+    [NonSerialized]
+    public GameObject twin;
+    public static Transform itemsParent  { get; private set; }
 
     void Start()
     {
@@ -60,6 +65,7 @@ public class PortalItem : MonoBehaviour
         transform.position = twin.transform.position;
         transform.rotation = twin.transform.rotation;
         transform.localScale = twin.transform.localScale;
+        onTeleport.Invoke();
     }
 
     void DisableComponentsInTwin() {
