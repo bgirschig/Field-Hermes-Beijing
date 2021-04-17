@@ -62,7 +62,7 @@ public class Bezier {
         time = time%1;
         int segmentStartIndex = Mathf.FloorToInt((precomputedPoints.Length - 1) * time);
         int segmentEndIndex = segmentStartIndex + 1;
-        float interval = 1f / precomputedPoints.Length;
+        float interval = 1f / (precomputedPoints.Length - 1);
 
         float segmentStartTime = segmentStartIndex * interval;
         float localTime = (time - segmentStartTime) / interval;
