@@ -10,6 +10,6 @@ public class FollowPath : MonoBehaviour {
     public float time;
 
     void Update() {
-        transform.position = pathCreator.GetPointAtTime(time);
+        if (pathCreator != null) transform.position = pathCreator.GetPointAtTime(time);
     }
 }
