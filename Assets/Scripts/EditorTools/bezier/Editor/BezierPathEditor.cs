@@ -12,6 +12,9 @@ public class BezierPathEditor : Editor
     SerializedProperty resolution;
     SerializedProperty spacing;
 
+    bool showPoints = false;
+    int activeAnchor = -1;
+
     void OnEnable() {
         bezierPath = (BezierPath)target;
 
@@ -31,6 +34,14 @@ public class BezierPathEditor : Editor
         serializedObject.ApplyModifiedProperties();
 
         bezierPath.bezier.Recompute();
+    }
+
+    void deleteActiveAnchor() {
+        Undo.RecordObject(bezierPath, "Delete point");
+        bezierPath.bezier.deleteAnchor(activeAnchor);
+        activeAnchor = -1;
+        Repaint();
+        EditorApplication.QueuePlayerLoopUpdate();
     }
 
     void Input() {
@@ -59,27 +70,57 @@ public class BezierPathEditor : Editor
             bezierPath.bezier.addSegment(bezierPath.transform.InverseTransformPoint(newPoint));
             EditorApplication.QueuePlayerLoopUpdate();
         }
+
+        if (activeAnchor>=0 &&
+            guiEvent.isKey &&
+            guiEvent.type.Equals(EventType.KeyDown) &&
+            (guiEvent.keyCode == KeyCode.Delete || guiEvent.keyCode == KeyCode.Backspace)) {
+                guiEvent.Use();
+                deleteActiveAnchor();
+        }
     }
 
     void Draw() {
         Bezier bezier = bezierPath.bezier;
         Handles.color = Color.red;
 
-        for (int i = 0; i < bezier.numSegment; i++) {
-            Vector3[] points = bezier.GetPointInSegment(i);
-            Handles.DrawLine(bezierPath.transform.TransformPoint(points[0]), bezierPath.transform.TransformPoint(points[1]));
-            Handles.DrawLine(bezierPath.transform.TransformPoint(points[2]), bezierPath.transform.TransformPoint(points[3]));
-        }
-
-        for (int i = 0; i < bezier.numPoints; i++) {
-            float size = HandleUtility.GetHandleSize(bezierPath.transform.TransformPoint(bezier[i])) * 0.1f;
-            EditorGUI.BeginChangeCheck();
-            Vector3 newPosition = Handles.FreeMoveHandle(bezierPath.transform.TransformPoint(bezier[i]), Quaternion.identity, size, Vector3.zero, Handles.ConeHandleCap);
-            if (EditorGUI.EndChangeCheck()) {
-                Undo.RecordObject(bezierPath, "Move point");
-                bezierPath.movePoint(i, bezierPath.transform.InverseTransformPoint(newPosition));
-                EditorApplication.QueuePlayerLoopUpdate();
+        for (int i = 0; i < bezierPath.bezier.points.Count; i+=3) {
+            Vector3 handlePos = bezierPath.transform.TransformPoint(bezier[i]);
+            float size = HandleUtility.GetHandleSize(handlePos);
+            if (activeAnchor == i) {
+                MakeHandle(i);
+                if (i > 0) {
+                    Handles.DrawLine(handlePos, bezierPath.transform.TransformPoint(bezier[i-1]));
+                    MakeHandle(i-1);
+                }
+                if (i < bezier.points.Count - 1) {
+                    Handles.DrawLine(handlePos, bezierPath.transform.TransformPoint(bezier[i+1]));
+                    MakeHandle(i+1);
+                }
+            } else {
+                Quaternion rotation = Quaternion.LookRotation(Camera.current.transform.forward, Camera.current.transform.up);
+                bool clicked = Handles.Button(handlePos, rotation, size * 0.1f, size * 0.2f, Handles.ConeHandleCap);
+                if (clicked) {
+                    activeAnchor = i;
+                    Repaint ();
+                }
             }
+        }
+    }
+
+    void MakeHandle(int index) {
+        Vector3 position = bezierPath.transform.TransformPoint(bezierPath.bezier[index]);
+        float size = HandleUtility.GetHandleSize(position) * 0.1f;
+        
+        EditorGUI.BeginChangeCheck();
+        Vector3 newPosition = Handles.FreeMoveHandle(
+            position, Quaternion.identity, size, Vector3.zero, Handles.ConeHandleCap);
+        bool hasChanged = EditorGUI.EndChangeCheck();
+
+        if (hasChanged) {
+            Undo.RecordObject(bezierPath, "Move point");
+            bezierPath.movePoint(index, bezierPath.transform.InverseTransformPoint(newPosition));
+            EditorApplication.QueuePlayerLoopUpdate();
         }
     }
 }

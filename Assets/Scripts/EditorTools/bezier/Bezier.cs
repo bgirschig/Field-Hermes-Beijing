@@ -56,6 +56,14 @@ public class Bezier {
         Recompute();
     }
 
+    public void deleteAnchor(int index) {
+        if (index % 3 != 0) throw new Exception($"point {index} is not an anchor");
+        int start = index > 0 ? index-1 : 0;
+        int count = index < points.Count-1 ? 3 : 2;
+        points.RemoveRange(start, count);
+        Recompute();
+    }
+
     public Vector3[] GetPointInSegment(int i) {
         return new Vector3[] {
             points[i*3], points[i*3+1], points[i*3+2], points[i*3+3]
