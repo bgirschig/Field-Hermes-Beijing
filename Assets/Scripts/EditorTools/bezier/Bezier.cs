@@ -78,6 +78,32 @@ public class Bezier {
         return localPoint;
     }
 
+    public Vector3? GetIntersection(Plane plane) {
+        if (precomputedPoints == null) Recompute();
+
+        // TODO: This is a bit ugly. test other solution:
+        // - Define plane with a Transform (forward is normal, position is 'center')
+        // - Apply this Transform to segments points
+        // - Them, a segment intersects if p1.z < 0 < p2.z
+
+        // loop over all segments (or until a match is found):
+        // use a Ray to determine if the segment intersects the plane
+        Vector3 direction;
+        float segmentLength;
+        float rayEnter;
+        for (int i = 0; i < precomputedPoints.Length-1; i ++) {
+            direction = precomputedPoints[i+1] - precomputedPoints[i];
+            segmentLength = direction.magnitude;
+
+            Ray ray = new Ray(precomputedPoints[i], direction);
+            bool intersects = plane.Raycast(ray, out rayEnter);
+            if (intersects && rayEnter < segmentLength) {
+                return ray.GetPoint(rayEnter);
+            }
+        }
+        return null;
+    }
+
     public void Recompute() {
         List<Vector3> evenlySpacedPoints = new List<Vector3>();
         evenlySpacedPoints.Add(points[0]);

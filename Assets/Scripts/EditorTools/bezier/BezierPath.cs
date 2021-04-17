@@ -52,6 +52,13 @@ public class BezierPath : MonoBehaviour {
         return transform.TransformPoint(bezier.GetPointAtTime(time));
     }
 
+    public Vector3? GetIntersection(Plane plane) {
+        plane = transform.worldToLocalMatrix.TransformPlane(plane);
+        Vector3? output = bezier.GetIntersection(plane);
+        if (output == null) return output;
+        else return transform.TransformPoint((Vector3)output);
+    }
+
     void Reset() {
         bezier = new Bezier();
     }
