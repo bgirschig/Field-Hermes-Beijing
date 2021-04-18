@@ -50,15 +50,8 @@ public class PortalItem : MonoBehaviour
             Portal.current.gameObject.isStatic &&
             Portal.current.target.gameObject.isStatic) return;
 
-        // Here, 'local' means 'local to the current portal'
-        Vector3 sourceLocalPosition = Portal.current.transform.InverseTransformPoint(transform.position);
-        twin.transform.position = Portal.current.target.TransformPoint(sourceLocalPosition);
-
-        Vector3 sourceLocalForward = Portal.current.transform.InverseTransformDirection(transform.forward);
-        Vector3 sourceLocalUp = Portal.current.transform.InverseTransformDirection(transform.up);
-        twin.transform.rotation = Quaternion.LookRotation(
-            Portal.current.target.TransformDirection(sourceLocalForward),
-            Portal.current.target.TransformDirection(sourceLocalUp));
+        twin.transform.position = Portal.current.TeleportPoint(transform.position);
+        twin.transform.rotation = Portal.current.TeleportLookRotation(transform.forward, transform.up);
     }
 
     public void teleportToTwin() {
