@@ -32,7 +32,7 @@ public class BezierFollowPlane_portal : MonoBehaviour
         twinTargetPlane = PortalItem.findTwin<PlaneComponent>(targetPlane);
     }
 
-    void OnTeleport() {
+    void OnTeleport(Vector3 offset) {
         bezierPath = portalMatcher.nextBezier;
         portalMatcher = bezierPath.GetComponent<BezierPortalMatcher>();
     }

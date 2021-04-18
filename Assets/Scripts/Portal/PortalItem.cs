@@ -17,7 +17,7 @@ public class PortalItem : MonoBehaviour
     public string[] disableComponentsInTwin = { "AudioListener", "Collider" };
 
     [NonSerialized]
-    public UnityEvent onTeleport = new UnityEvent();
+    public UnityEvent<Vector3> onTeleport = new UnityEvent<Vector3>();
 
     [NonSerialized]
     public GameObject twin;
@@ -56,10 +56,12 @@ public class PortalItem : MonoBehaviour
     }
 
     public void teleportToTwin() {
+        Vector3 offsetPosition = twin.transform.position - transform.position;
         transform.position = twin.transform.position;
         transform.rotation = twin.transform.rotation;
         transform.localScale = twin.transform.localScale;
-        onTeleport.Invoke();
+        
+        onTeleport.Invoke(offsetPosition);
     }
 
     void DisableComponentsInTwin() {
