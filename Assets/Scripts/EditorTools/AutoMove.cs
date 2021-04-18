@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Auto_move : MonoBehaviour
+public class AutoMove : MonoBehaviour
 {
     public Vector3 speed;
     [Tooltip("speed when holding down the shift key")]

@@ -844,7 +844,7 @@ MonoBehaviour:
   disableComponentsInTwin:
   - AudioListener
   - Collider
-  - Auto_move
+  - AutoMove
 --- !u!135 &1244660388
 SphereCollider:
   m_ObjectHideFlags: 0
