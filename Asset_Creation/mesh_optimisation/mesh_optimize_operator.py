@@ -24,6 +24,3 @@ def register():
 
 def unregister():
     bpy.utils.unregister_class(MeshOptimizerOperator)
-
-print("---")
-bpy.ops.object.optimize()

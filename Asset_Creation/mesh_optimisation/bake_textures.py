@@ -76,6 +76,11 @@ def bake_textures(obj):
   total_pixel_surface = math.ceil(math.sqrt(total_pixel_count))
   print(f"found {len(textures)} textures taking a total of {total_pixel_surface} square pixels")
 
+  # image = bpy.data.images.new("MyImage", width=200, height=200)
+  # image.filepath_raw = "/tmp/temp.png"
+  # image.file_format = 'PNG'
+  # image.save()
+
   # TODO: Create individual textures, tiled as needed, based on bake-preprocess data 
   # TODO: Pack textures
   # TODO: Modify UVs to match packed positions

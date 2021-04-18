@@ -22,6 +22,21 @@ to rebuild the protobuf classes:
 protoc.exe --csharp_out=./Assets/Scripts/protobufs ./Assets/Scripts/protobufs/*.proto
 ```
 
+## Mesh optimisation
+- recalculate normals outside
+    - didn't work ? manual normals cleanup (flip inside-out normals)
+- Use the MatCombiner plugin
+- fix broken UVs (some sketchup models break when loaded in blender)
+- save as fbx
+
+Priorities (sorted)
+- FRA_tourEiffel
+- FRA_sculpture
+- FRA_grandPalais
+- FRA_louvre
+- FRA_sacreCoeur
+- FRA_decorA
+
 ## Thanks
 All hail:
 - [ronja's tutorials](https://www.ronja-tutorials.com/)
