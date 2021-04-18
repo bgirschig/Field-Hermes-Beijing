@@ -56,7 +56,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _noise:
-        m_Texture: {fileID: 2800000, guid: 195dbf065c2644fb4b311e8a0bc3f368, type: 3}
+        m_Texture: {fileID: 2800000, guid: bbabe9c736ad54a4db44ffef36b2b36b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
@@ -77,17 +77,17 @@ Material:
     - _StencilRef: 5
     - _UVSec: 0
     - _ZWrite: 1
-    - _brightnessOutMax: 2
+    - _brightnessOutMax: 2.5
     - _brightnessOutMax2: 1
-    - _brightnessOutMin: 0.75
-    - _brigtnessInfluenceOnLine: 0.5
+    - _brightnessOutMin: 1
+    - _brigtnessInfluenceOnLine: 0.27
     - _colorOffset: 4.48
-    - _depthInfluenceOnLine: 0.5
+    - _depthInfluenceOnLine: 1
     - _distance: 7.72
-    - _lineThickness: 0.75
-    - _noiseAmount: 0.85
-    - _noiseScale: 0.75
-    - _normalInfluenceOnLine: 1
+    - _lineThickness: 2
+    - _noiseAmount: 0.44
+    - _noiseScale: 1
+    - _normalInfluenceOnLine: 0.96
     - _sharpness: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
