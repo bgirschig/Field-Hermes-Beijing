@@ -55,10 +55,8 @@ public class BezierFollowPlane_portal : MonoBehaviour
             if (twinTargetPlane == null) return;
             // World position in the portal target's world
             position = portalMatcher.nextBezier.GetIntersection(twinTargetPlane.GetPlane());
-            // There may be no intersection. In that case, abort.
-            if (position != null) {
-                transform.position = Portal.current.InverseTeleportPoint((Vector3)position);
-            }
+
+            if (position != null) transform.position = Portal.current.InverseTeleportPoint((Vector3)position);
         }
 
     }
