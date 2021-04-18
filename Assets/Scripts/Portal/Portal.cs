@@ -35,6 +35,27 @@ public class Portal : MonoBehaviour
         }
     }
 
+    /// Transform a point from portal world to portal target world (all in worldspace)
+    public Vector3 TeleportPoint(Vector3 worldSpacePoint) {
+        Vector3 output = transform.InverseTransformPoint(worldSpacePoint);
+        output = target.TransformPoint(output);
+        return output;
+    }
+    /// Transform a point from portal target world to portal world (all in worldspace)
+    public Vector3 InverseTeleportPoint(Vector3 worldSpacePoint) {
+        Vector3 output = target.InverseTransformPoint(worldSpacePoint);
+        output = transform.TransformPoint(output);
+        return output;
+    }
+    /// Transform a rotation (defined by forward and up vector) from portal to portal target
+    public Quaternion TeleportLookRotation(Vector3 forward, Vector3 up) {
+        Vector3 sourceLocalForward = transform.InverseTransformDirection(forward);
+        Vector3 sourceLocalUp = transform.InverseTransformDirection(up);
+        return Quaternion.LookRotation(
+            target.TransformDirection(sourceLocalForward),
+            target.TransformDirection(sourceLocalUp));
+    }
+
     /// <summary>Make this portal the current active one.
     /// PortalItems will be positionned relative to this portal</summary>
     public void activate() {

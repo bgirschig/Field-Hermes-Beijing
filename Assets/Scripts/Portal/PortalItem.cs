@@ -4,6 +4,8 @@
 
 using System;
 using UnityEngine;
+using UnityEngine.Events;
+using System.Collections.Generic;
 
 public class PortalItem : MonoBehaviour
 {
@@ -14,8 +16,12 @@ public class PortalItem : MonoBehaviour
     [Tooltip("List of component that should be disabled in this gameobject's 'twin'")]
     public string[] disableComponentsInTwin = { "AudioListener", "Collider" };
 
-    private GameObject twin;
-    private static Transform itemsParent;
+    [NonSerialized]
+    public UnityEvent<Vector3> onTeleport = new UnityEvent<Vector3>();
+
+    [NonSerialized]
+    public GameObject twin;
+    public static Transform itemsParent  { get; private set; }
 
     void Start()
     {
@@ -45,21 +51,17 @@ public class PortalItem : MonoBehaviour
             Portal.current.gameObject.isStatic &&
             Portal.current.target.gameObject.isStatic) return;
 
-        // Here, 'local' means 'local to the current portal'
-        Vector3 sourceLocalPosition = Portal.current.transform.InverseTransformPoint(transform.position);
-        twin.transform.position = Portal.current.target.TransformPoint(sourceLocalPosition);
-
-        Vector3 sourceLocalForward = Portal.current.transform.InverseTransformDirection(transform.forward);
-        Vector3 sourceLocalUp = Portal.current.transform.InverseTransformDirection(transform.up);
-        twin.transform.rotation = Quaternion.LookRotation(
-            Portal.current.target.TransformDirection(sourceLocalForward),
-            Portal.current.target.TransformDirection(sourceLocalUp));
+        twin.transform.position = Portal.current.TeleportPoint(transform.position);
+        twin.transform.rotation = Portal.current.TeleportLookRotation(transform.forward, transform.up);
     }
 
     public void teleportToTwin() {
+        Vector3 offsetPosition = twin.transform.position - transform.position;
         transform.position = twin.transform.position;
         transform.rotation = twin.transform.rotation;
         transform.localScale = twin.transform.localScale;
+        
+        onTeleport.Invoke(offsetPosition);
     }
 
     void DisableComponentsInTwin() {
@@ -68,9 +70,35 @@ public class PortalItem : MonoBehaviour
 
         foreach (var componentName in disableComponentsInTwin)
         {
+            // TODO: we should use component references rather than name
             var components = GetComponentsByName(twin, componentName);
             foreach (var component in components) Destroy(component);
         }
+    }
+
+    public static T findTwin<T>(T source) where T : Component {
+        var currentObject = source.gameObject.transform;
+        var portalItem = currentObject.GetComponent<PortalItem>();
+        var parentChain = new List<int>();
+        while(portalItem == null && currentObject != null) {
+            // record the current gameobject's position among its siblings
+            // we'll use that to find the corresponding object in the twin
+            parentChain.Add(currentObject.GetSiblingIndex());
+            // continue up the parent chain
+            currentObject = currentObject.transform.parent;
+            portalItem = currentObject.GetComponent<PortalItem>();
+        }
+
+        if (portalItem == null || portalItem.twin == null) return null;
+
+        // Go back down the parent chain
+        currentObject = portalItem.twin.transform;
+        while(parentChain.Count > 0) {
+            currentObject = currentObject.GetChild(parentChain[parentChain.Count-1]);
+            parentChain.RemoveAt(parentChain.Count-1);
+        }
+
+        return currentObject.GetComponent<T>();
     }
 
     private static Component[] GetComponentsByName(GameObject obj, string componentName) {
