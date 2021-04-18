@@ -5,10 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/main.unity
     guid: 397755e4a10829e4c881098a50240634
   - enabled: 1
-    path: Assets/Scenes/Bast/Bezier portals.unity
-    guid: c59dba4d70389004fa815fd1b153adf9
+    path: Assets/Scenes/Scenery.unity
+    guid: d53544f6caec5db45957699aa6165809
   m_configObjects: {}
