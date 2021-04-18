@@ -54,8 +54,8 @@ public class BezierPath : MonoBehaviour {
 
     public Vector3? GetIntersection(Plane plane) {
         plane = transform.worldToLocalMatrix.TransformPlane(plane);
-        Vector3? output = bezier.GetIntersection(plane);
-        if (output == null) return output;
+        var output = bezier.GetIntersection(plane);
+        if (output == null) return null;
         else return transform.TransformPoint((Vector3)output);
     }
 

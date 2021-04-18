@@ -5,6 +5,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.Events;
+using System.Collections.Generic;
 
 public class PortalItem : MonoBehaviour
 {
@@ -67,9 +68,35 @@ public class PortalItem : MonoBehaviour
 
         foreach (var componentName in disableComponentsInTwin)
         {
+            // TODO: we should use component references rather than name
             var components = GetComponentsByName(twin, componentName);
             foreach (var component in components) Destroy(component);
         }
+    }
+
+    public static T findTwin<T>(T source) where T : Component {
+        var currentObject = source.gameObject.transform;
+        var portalItem = currentObject.GetComponent<PortalItem>();
+        var parentChain = new List<int>();
+        while(portalItem == null && currentObject != null) {
+            // record the current gameobject's position among its siblings
+            // we'll use that to find the corresponding object in the twin
+            parentChain.Add(currentObject.GetSiblingIndex());
+            // continue up the parent chain
+            currentObject = currentObject.transform.parent;
+            portalItem = currentObject.GetComponent<PortalItem>();
+        }
+
+        if (portalItem == null || portalItem.twin == null) return null;
+
+        // Go back down the parent chain
+        currentObject = portalItem.twin.transform;
+        while(parentChain.Count > 0) {
+            currentObject = currentObject.GetChild(parentChain[parentChain.Count-1]);
+            parentChain.RemoveAt(parentChain.Count-1);
+        }
+
+        return currentObject.GetComponent<T>();
     }
 
     private static Component[] GetComponentsByName(GameObject obj, string componentName) {
