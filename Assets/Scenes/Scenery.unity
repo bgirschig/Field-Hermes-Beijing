@@ -311,8 +311,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d17b7373418ea4c8cb3dd6be79d256bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  starCount: 30000
-  starSize: 0.9
+  starCount: 80000
+  starSize: 0.1
   material: {fileID: 2100000, guid: 585beaf52ba15a446a4a892928c0c83f, type: 2}
   bounds:
     m_Center: {x: 0, y: 200, z: 600}
@@ -588,7 +588,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.1
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -904,7 +904,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 1000
+    maxNumParticles: 20000
     size3D: 0
     rotation3D: 0
     gravityModifier:
