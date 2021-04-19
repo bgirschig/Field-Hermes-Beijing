@@ -77,17 +77,17 @@ Material:
     - _StencilRef: 5
     - _UVSec: 0
     - _ZWrite: 1
-    - _brightnessOutMax: 2.14
+    - _brightnessOutMax: 2
     - _brightnessOutMax2: 1
-    - _brightnessOutMin: 0.63
-    - _brigtnessInfluenceOnLine: 0.4
+    - _brightnessOutMin: 0.5
+    - _brigtnessInfluenceOnLine: 0.5
     - _colorOffset: 4.48
-    - _depthInfluenceOnLine: 0
+    - _depthInfluenceOnLine: 0.5
     - _distance: 7.72
     - _lineThickness: 1
-    - _noiseAmount: 1
+    - _noiseAmount: 0.85
     - _noiseScale: 1
-    - _normalInfluenceOnLine: 0.9
+    - _normalInfluenceOnLine: 1
     - _sharpness: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
