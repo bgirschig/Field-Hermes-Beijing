@@ -312,7 +312,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   starCount: 80000
-  starSize: 0.1
+  starSize: 0.2
   material: {fileID: 2100000, guid: 585beaf52ba15a446a4a892928c0c83f, type: 2}
   bounds:
     m_Center: {x: 0, y: 200, z: 600}
