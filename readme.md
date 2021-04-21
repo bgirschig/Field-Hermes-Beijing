@@ -30,12 +30,12 @@ protoc.exe --csharp_out=./Assets/Scripts/protobufs ./Assets/Scripts/protobufs/*.
 - save as fbx
 
 Priorities (sorted)
-- FRA_tourEiffel
-- FRA_sculpture
-- FRA_grandPalais
-- FRA_louvre
-- FRA_sacreCoeur
-- FRA_decorA
+- [x] FRA_tourEiffel
+- [x] FRA_sculpture
+- [] FRA_grandPalais
+- [x] FRA_louvre
+- [] FRA_sacreCoeur
+- [] FRA_decorA
 
 ## Thanks
 All hail:
