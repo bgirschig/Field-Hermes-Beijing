@@ -74,3 +74,4 @@ __pycache__
 BuildReports
 BuildReports.meta
 optim_out
+Asset_Creation/mesh_optimisation/*.blend

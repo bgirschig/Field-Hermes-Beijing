@@ -32,9 +32,9 @@ protoc.exe --csharp_out=./Assets/Scripts/protobufs ./Assets/Scripts/protobufs/*.
 Priorities (sorted)
 - [x] FRA_tourEiffel
 - [x] FRA_sculpture
-- [] FRA_grandPalais
+- [x] FRA_grandPalais
 - [x] FRA_louvre
-- [] FRA_sacreCoeur
+- [x] FRA_sacreCoeur
 - [] FRA_decorA
 
 ## Thanks
