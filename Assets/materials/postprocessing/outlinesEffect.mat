@@ -80,7 +80,7 @@ Material:
     - _brightnessOutMax: 2
     - _brightnessOutMax2: 1
     - _brightnessOutMin: 0.5
-    - _brigtnessInfluenceOnLine: 0
+    - _brigtnessInfluenceOnLine: 0.5
     - _colorOffset: 4.48
     - _depthInfluenceOnLine: 1
     - _distance: 7.72
