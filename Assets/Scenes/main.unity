@@ -511,7 +511,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a78f7fca5573abc4f8f87d2c2e12561d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effectMaterial: {fileID: 2100000, guid: 5dd5a36ad15347547af7f59804142399, type: 2}
+  effectMaterial: {fileID: 2100000, guid: 9d71764f749a0a949ba2e177c2611bc9, type: 2}
   depthTextureMode: 2
   layerMask:
     serializedVersion: 2
