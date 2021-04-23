@@ -20,7 +20,7 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 1.372549, g: 1.372549, b: 1.372549, a: 1}
+  m_AmbientSkyColor: {r: 2.1185474, g: 2.1185474, b: 2.1185474, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
@@ -1396,8 +1396,8 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1.7
+  m_Color: {r: 1, g: 0, b: 1, a: 1}
+  m_Intensity: 1
   m_Range: 180
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
