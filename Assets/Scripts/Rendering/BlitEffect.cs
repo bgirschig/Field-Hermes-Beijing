@@ -80,9 +80,11 @@ public class BlitEffect : MonoBehaviour {
     void DrawSilhouettes(CommandBuffer commands) {
         if (silhouetteWhite==null || silhouetteWhite == null) CreateSilhouetteMaterials();
         commands.ClearRenderTarget(true, true, Color.clear);
-        // TODO: Updating this every frame is inefficient. Find a way to get an up-to-date list of renderers without doing this.
+        // TODO: calling this every frame is not very efficient but also not awful
+        // measured execution time on our final scene: 0.058ms, twice (because it runs on each camera)
         UpdateRenderablesList();
         foreach (RendererInfo rendererInfo in renderables) {
+            if (!rendererInfo.renderer.gameObject.activeInHierarchy) continue;
             var hasLayer = ((layerMask.value & (1 << rendererInfo.layer)) > 0);
             var mat = hasLayer ? silhouetteWhite : silhouetteBlack;
             // Text renderers don't have a meshFilter. They also don't work well  
