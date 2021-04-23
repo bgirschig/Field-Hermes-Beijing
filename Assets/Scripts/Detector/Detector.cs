@@ -29,6 +29,7 @@ public class Detector : MonoBehaviour
                                  // needs to be in the 'Texture' format we'll do the conversion
                                  // after the detector is done with a frame and before starting the
                                  // next one
+    Color32[] webcamPixels32;
 
     // Smoothing
     float lastDetectionTime = 0;
@@ -59,7 +60,7 @@ public class Detector : MonoBehaviour
         if (webcam.didUpdateThisFrame) {
             float deltaTime = Time.time - lastDetectionTime;
             lastDetectionTime = Time.time;
-            float position = detectorCore.detect(OpenCvSharp.Unity.TextureToMat(webcam.capture));
+            float position = detectorCore.detect(getWebcamMat(webcam.capture));
 
             if (deltaTime > 0) {
                 float rawSpeed = (position - lastRawPosition) / deltaTime;
@@ -69,6 +70,26 @@ public class Detector : MonoBehaviour
         }
 
         smoothedPosition = Mathf.SmoothDamp(smoothedPosition, lastRawPosition, ref positionSmoothSpeed, positionSmoothDuration);
+    }
+
+    /** A faster version of unity opencv's TextureToMat (avoid memory allocation) */
+    OpenCvSharp.Mat getWebcamMat(WebCamTexture texture, OpenCvSharp.Unity.TextureConversionParams parameters = null) {
+        if (null == parameters)
+            parameters = OpenCvSharp.Unity.TextureConversionParams.Default;
+
+        if (webcamPixels32 == null || webcamPixels32.Length != texture.width*texture.height) {
+            Debug.Log("assign");
+            webcamPixels32 = texture.GetPixels32();
+        } else {
+            texture.GetPixels32(webcamPixels32);
+        }
+        return OpenCvSharp.Unity.PixelsToMat(
+            webcamPixels32,
+            texture.width,
+            texture.height,
+            parameters.FlipVertically,
+            parameters.FlipHorizontally,
+            parameters.RotationAngle);
     }
 
     void OnCameraChange() {
