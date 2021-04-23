@@ -8594,7 +8594,7 @@ PrefabInstance:
     - target: {fileID: 4159538650876759051, guid: 5a3426b5e644342979e7effa8e206caa,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4159538650876759051, guid: 5a3426b5e644342979e7effa8e206caa,
         type: 3}
@@ -9113,7 +9113,7 @@ PrefabInstance:
     - target: {fileID: 4159538650876759051, guid: 5a3426b5e644342979e7effa8e206caa,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4159538650876759051, guid: 5a3426b5e644342979e7effa8e206caa,
         type: 3}
@@ -27026,7 +27026,7 @@ PrefabInstance:
     - target: {fileID: 4159538650876759051, guid: 5a3426b5e644342979e7effa8e206caa,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4159538650876759051, guid: 5a3426b5e644342979e7effa8e206caa,
         type: 3}
@@ -27507,7 +27507,7 @@ PrefabInstance:
     - target: {fileID: 4159538650876759051, guid: 5a3426b5e644342979e7effa8e206caa,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4159538650876759051, guid: 5a3426b5e644342979e7effa8e206caa,
         type: 3}
@@ -46496,7 +46496,7 @@ PrefabInstance:
     - target: {fileID: 4159538650876759051, guid: 5a3426b5e644342979e7effa8e206caa,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4159538650876759051, guid: 5a3426b5e644342979e7effa8e206caa,
         type: 3}
@@ -47521,7 +47521,7 @@ PrefabInstance:
     - target: {fileID: 4159538650876759051, guid: 5a3426b5e644342979e7effa8e206caa,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4159538650876759051, guid: 5a3426b5e644342979e7effa8e206caa,
         type: 3}
