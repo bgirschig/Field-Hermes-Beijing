@@ -41,6 +41,7 @@ public class CopyProtection : MonoBehaviour {
             foreach (var item in disableGameobjects) {
                 item.SetActive(false);
             }
+            Time.timeScale = 0;
             if (violationUI != null) violationUI.showViolation(violation);
 
             Debug.LogError(
