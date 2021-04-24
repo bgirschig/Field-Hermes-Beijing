@@ -44,7 +44,7 @@ public class PortalItem : MonoBehaviour
 
     /// Keep the twin in the same relative position to the portal target as the 'main' object's
     /// relative position to the portal
-    void Update()
+    void LateUpdate()
     {
         if (Portal.current == null) return;
         if (gameObject.isStatic &&
