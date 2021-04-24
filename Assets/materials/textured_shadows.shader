@@ -107,10 +107,9 @@ Shader "Custom/textured_shadows"
 				#endif
 
 				UNITY_LIGHT_ATTENUATION(atten, IN, IN.worldPos)
-                float brightness = step(0.9, 1-atten) * shadow_texture;
+                float brightness = step(1, 1-atten) * shadow_texture;
 		
                 return lerp(_litColor, _shadowColor, brightness);
-                return lerp(_litColor, _shadowColor, atten);
 			}
 
 			ENDCG

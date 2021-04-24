@@ -85,8 +85,9 @@ public class BlitEffect : MonoBehaviour {
         UpdateRenderablesList();
         foreach (RendererInfo rendererInfo in renderables) {
             if (!rendererInfo.renderer.gameObject.activeInHierarchy) continue;
+            if (!layerInMask(rendererInfo.layer, cam.cullingMask)) continue; // skip culled objects
             var hasLayer = ((layerMask.value & (1 << rendererInfo.layer)) > 0);
-            var mat = hasLayer ? silhouetteWhite : silhouetteBlack;
+            var mat = layerInMask(rendererInfo.layer, layerMask) ? silhouetteWhite : silhouetteBlack;
             // Text renderers don't have a meshFilter. They also don't work well  
             if (rendererInfo.subMeshCount == 0) {
                 // TODO: We shouldn't be using the mesh's 'normal' material to render to our stencil.
@@ -134,6 +135,10 @@ public class BlitEffect : MonoBehaviour {
     void OnValidate() {
         cam = GetComponent<Camera>();
         cam.depthTextureMode = depthTextureMode;
+    }
+
+    static bool layerInMask(int layer, LayerMask mask) {
+        return ((mask.value & (1 << layer)) > 0);
     }
     
     public struct RendererInfo {

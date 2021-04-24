@@ -37,6 +37,44 @@ Priorities (sorted)
 - [x] FRA_sacreCoeur
 - [] FRA_decorA
 
+## Layers
+Layers are used to prevent bad interactions between different "worlds" (groups of objects, "seen" by portals)
+
+Eg. prevent the light that is illuminating the scene on the other side of the portal from illuminating this side of the portal
+
+This also helps performance, since each camera only renders 'useful' objects
+
+To reduce the amount of layers needed, the same layers are used to mask the postprocessing effect.
+This means we have to leave all objects that should not be affected by postprocessing on the "default" layer, but since those
+objects are usually quite simple (unlit primitives), it seems ok to leave them there (they won't interact with lights)
+
+In case the above compromise does not work anymore, we could duplicate the layers like so:
+- group1-filter
+- group1-nofilter
+- group2-filter
+- group2-nofilter
+- group3-filter
+- group3-nofilter
+...
+or use a custom layer system, that allows multiple layers on a single gameObject:
+- An object in group 1, with postprocessing applied:
+    - layer1: group1
+    - layer2: filter
+- An object in group 3, bypassing postprocessing
+    - layer1: group3
+    - layer2: nofilter
+This may be hard, since it still needs to play nice with built in components (eg. Camera & Lights culling mask)
+
+## Shadows
+We are using a point light very close to the ground (sometimes below the objects that cast its shadow), which
+should create infinite shadows.
+
+We can't do that so we cheat, with a floor plane slightly rotated to match the horizon:
+
+![shadow hack illustration](projectDoc/shadow.png)
+
+(Angle greatly exagerated for demonstration)
+
 ## Thanks
 All hail:
 - [ronja's tutorials](https://www.ronja-tutorials.com/)

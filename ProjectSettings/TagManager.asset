@@ -9,13 +9,13 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Edges
+  - 
   - Water
   - UI
   - portals
-  - 
-  - 
-  - 
+  - group1-edges
+  - group2-edges
+  - group3-edges
   - 
   - 
   - 
