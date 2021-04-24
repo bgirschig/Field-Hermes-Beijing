@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 public class AutoMove : MonoBehaviour
 {
     public Vector3 speed;
+    public Vector3 rotateSpeed;
     [Tooltip("speed when holding down the shift key")]
     public Vector3 shiftSpeed;
     
@@ -26,5 +27,6 @@ public class AutoMove : MonoBehaviour
         } else {
             transform.Translate(speed * Time.deltaTime);
         }
+        transform.Rotate(rotateSpeed * Time.deltaTime);
     }
 }
