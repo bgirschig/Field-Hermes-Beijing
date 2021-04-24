@@ -84,7 +84,7 @@ Material:
     - _colorOffset: 4.48
     - _depthInfluenceOnLine: 0.5
     - _distance: 7.72
-    - _levelInHigh: 0.75
+    - _levelInHigh: 0.5
     - _levelInLow: 0.25
     - _levelOutHigh: 0.75
     - _levelOutLow: 0.363
