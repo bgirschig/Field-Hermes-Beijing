@@ -27,7 +27,11 @@ public class PreferencesHandler : MonoBehaviour
         cameraSelector.options.Clear();
         cameraSelector.AddOptions(webcam.devices);
         initOption("detector.camera_name", cameraSelector, (string val) => webcam.setCamera(val), "");
-        initOption("style.lanternColor", lanternColorInput, (string val) => lantern.material.SetColor("_Color", colorFromHex(val)), "#009178");
+        initOption("style.lanternColor", lanternColorInput, (string val) => {
+            Color color = colorFromHex(val);
+            lantern.material.SetColor("_Color", color);
+            PortalItem.findTwin<Renderer>(lantern).material.SetColor("_Color", color);
+        }, "#009178");
     }
 
     // Initialize a float config option: load from playerprefs, default value, update the global
