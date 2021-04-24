@@ -87,7 +87,7 @@ Material:
     - _levelInHigh: 0.5
     - _levelInLow: 0.25
     - _levelOutHigh: 0.75
-    - _levelOutLow: 0.363
+    - _levelOutLow: 0.521
     - _lineThickness: 0.32
     - _noiseAmount: 0.65
     - _noiseScale: 0.725
