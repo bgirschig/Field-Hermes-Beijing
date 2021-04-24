@@ -7,6 +7,7 @@
 
 using UnityEngine;
 using System;
+using System.Collections.Generic;
 using UnityEngine.Events;
 
 public class SharedWebcam : MonoBehaviour
@@ -31,11 +32,20 @@ public class SharedWebcam : MonoBehaviour
 
     public bool didUpdateThisFrame {
         get {
+            if (!ready) return false;
             if (capture == null) return false;
             return capture.didUpdateThisFrame;
         }
     }
     
+    public List<string> devices {
+        get {
+            List<string> output = new List<string>();
+            foreach (var device in WebCamTexture.devices) output.Add(device.name);     
+            return output;
+        }
+    }
+
     private bool waitingCameraInit = false;
 
     // Start is called before the first frame update
@@ -54,10 +64,14 @@ public class SharedWebcam : MonoBehaviour
             
             waitingCameraInit = false;
             ready = true;
+            
+            // At this point, the capture should already be playing, but in some cases
+            // (some cameras, on startup) we need to run Play() again.
+            if(!capture.isPlaying) capture.Play();
         }
     }
 
-    void setCamera(string deviceName) {
+    public void setCamera(string deviceName) {
         if (capture) capture.Stop();
         if (deviceName == currentCamera) return;
         if (deviceName == null) return;
@@ -69,13 +83,9 @@ public class SharedWebcam : MonoBehaviour
         waitingCameraInit = true;
     }
 
-    void setCamera(int deviceIndex) {
+    public void setCamera(int deviceIndex) {
         int deviceCount = WebCamTexture.devices.Length;
         deviceIndex %= deviceCount;
-
-        if (WebCamTexture.devices[deviceIndex].name == "OBS Virtual Camera") {
-            deviceIndex = (deviceIndex + 1) % deviceCount;
-        }
 
         string deviceName = WebCamTexture.devices[deviceIndex].name;
         setCamera(deviceName);

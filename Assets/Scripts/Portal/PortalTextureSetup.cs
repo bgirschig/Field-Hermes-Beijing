@@ -1,3 +1,8 @@
+/// Update the portal texture, so that the screen space texture is displayed correctly
+// ! This component assumes (see getCurrentDisplay):
+// - We're fullscreen
+// - The main camera is rendering to the screen we need to match
+
 using UnityEngine;
 
 public class PortalTextureSetup : MonoBehaviour
@@ -23,10 +28,15 @@ public class PortalTextureSetup : MonoBehaviour
         if (screenSizeHasChanged()) UpdateTextureSize();
     }
 
+    static Display getCurrentDisplay() {
+        return Display.displays[Camera.main.targetDisplay % Display.displays.Length];
+    }
+
     static bool screenSizeHasChanged() {
-        Vector2 screenSize = new Vector2(Screen.width, Screen.height);
+        Display display = getCurrentDisplay();
+        Vector2 screenSize = new Vector2(display.systemWidth, display.systemHeight);
 		if (screenSize == prevScreenSize) return false;
-		prevScreenSize = new Vector2(Screen.width, Screen.height);
+		prevScreenSize = screenSize;
         return true;
     }
 
@@ -35,7 +45,8 @@ public class PortalTextureSetup : MonoBehaviour
         if (staticPortalMaterial == null) return;
 
         if (portalCamera.targetTexture != null) portalCamera.targetTexture.Release();
-        portalCamera.targetTexture = new RenderTexture(Screen.width, Screen.height, 24);
+        Display display = getCurrentDisplay();
+        portalCamera.targetTexture = new RenderTexture(display.systemWidth, display.systemHeight, 24);
         staticPortalMaterial.mainTexture = portalCamera.targetTexture;
     }
 

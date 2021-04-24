@@ -6,34 +6,32 @@ using UnityEngine.EventSystems;
 
 public class ColorSelector : MonoBehaviour, IPointerClickHandler
 {
-    Image foreground;
-    Image background;
+    Image image;
 
     public MaskCanvas maskCanvas; // controlled mask canvas
 
     // Start is called before the first frame update
     void Start()
     {
-        foreground = transform.GetChild(1).GetComponent<Image>();
-        background = transform.GetChild(0).GetComponent<Image>();
-        updateColors();
+        image = transform.GetChild(0).GetComponent<Image>();
+        updateColor();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.X)) {
+        if (Input.GetKeyUp(KeyCode.X) && EventSystem.current.currentSelectedGameObject == null) {
             maskCanvas.SwapColors();
-            updateColors();
+            updateColor();
         }
     }
 
-    void updateColors() {
-        foreground.color = maskCanvas.foregroundColor;
-        background.color = maskCanvas.backgroundColor;
+    void updateColor() {
+        image.color = maskCanvas.foregroundColor;
     }
 
     public void OnPointerClick(PointerEventData evt) {
-        print("click");
+        maskCanvas.SwapColors();
+        updateColor();
     }
 }
