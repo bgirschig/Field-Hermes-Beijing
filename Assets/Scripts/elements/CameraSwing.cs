@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class CameraSwing : MonoBehaviour
 {
@@ -52,7 +53,8 @@ public class CameraSwing : MonoBehaviour
                 break;
         }
 
-        bool shiftPressed = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
+        bool shiftPressed = (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) &&
+            EventSystem.current.currentSelectedGameObject == null;
         if (shiftPressed) speed *= shiftMultiplier;
 
         if (speed > maxSpeed) speed = maxSpeed;
