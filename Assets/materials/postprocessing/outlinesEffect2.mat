@@ -84,18 +84,18 @@ Material:
     - _colorOffset: 4.48
     - _depthInfluenceOnLine: 0.5
     - _distance: 7.72
-    - _levelInHigh: 0.313
-    - _levelInLow: 0
-    - _levelOutHigh: 0.844
-    - _levelOutLow: 0.539
-    - _lineThickness: 0.8
-    - _noiseAmount: 0.85
-    - _noiseScale: 1
+    - _levelInHigh: 0.75
+    - _levelInLow: 0.25
+    - _levelOutHigh: 0.75
+    - _levelOutLow: 0.25
+    - _lineThickness: 0.001
+    - _noiseAmount: 0.65
+    - _noiseScale: 0.725
     - _normalInfluenceOnLine: 1
     - _reveal: 1
     - _sharpness: 1
     - _stepa: 0
-    - _stepb: 0.047
+    - _stepb: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

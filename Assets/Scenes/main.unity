@@ -20,7 +20,7 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.05882353, g: 0.05882353, b: 0.05882353, a: 1}
+  m_AmbientSkyColor: {r: 1.9093419, g: 1.9093419, b: 1.9093419, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
@@ -737,7 +737,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   detector: {fileID: 365374266}
-  mode: 2
+  mode: 1
   overallSpeed: 20
   forwardBias: 2.5
   smoothTime: 0.1
