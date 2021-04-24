@@ -31,7 +31,7 @@ public class PreferencesHandler : MonoBehaviour
             Color color = colorFromHex(val);
             lantern.material.SetColor("_Color", color);
             PortalItem.findTwin<Renderer>(lantern).material.SetColor("_Color", color);
-        }, "#009178");
+        }, "#009178ff");
     }
 
     // Initialize a float config option: load from playerprefs, default value, update the global
