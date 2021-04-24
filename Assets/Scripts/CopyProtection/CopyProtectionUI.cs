@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class CopyProtectionUI : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class CopyProtectionUI : MonoBehaviour
 
     void Update()
     {
+        if (EventSystem.current.currentSelectedGameObject != null) return;
         bool metaPressed = Input.GetKey(KeyCode.LeftCommand) ||
             Input.GetKey(KeyCode.RightCommand) || 
             Input.GetKey(KeyCode.LeftControl) || 

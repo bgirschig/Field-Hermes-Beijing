@@ -1,8 +1,7 @@
 // Move the gameObject at a fixed speed;
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class AutoMove : MonoBehaviour
 {
@@ -19,7 +18,9 @@ public class AutoMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bool shiftPressed = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
+        bool shiftPressed = (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) &&
+            EventSystem.current.currentSelectedGameObject == null;
+
         if (shiftPressed) {
             transform.Translate(shiftSpeed * Time.deltaTime);
         } else {

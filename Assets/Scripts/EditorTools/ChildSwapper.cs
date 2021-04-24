@@ -3,6 +3,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class ChildSwapper : MonoBehaviour
 {
@@ -33,6 +34,6 @@ public class ChildSwapper : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(key)) nextObject();
+        if (Input.GetKeyDown(key) && EventSystem.current.currentSelectedGameObject == null) nextObject();
     }
 }

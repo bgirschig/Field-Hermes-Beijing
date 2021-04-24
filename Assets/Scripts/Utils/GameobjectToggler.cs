@@ -2,6 +2,7 @@
 
 using UnityEngine;
 using System;
+using UnityEngine.EventSystems;
 
 public class GameobjectToggler : MonoBehaviour
 {
@@ -22,7 +23,7 @@ public class GameobjectToggler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(toggleKey)) {
+        if (Input.GetKeyUp(toggleKey) && EventSystem.current.currentSelectedGameObject == null) {
             setGroupActive(toggleGroups[currentGroup], false);
             currentGroup = (currentGroup + 1) % toggleGroups.Length;
             setGroupActive(toggleGroups[currentGroup], true);

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class FullscreenControl : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class FullscreenControl : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyUp(key)) {
+        if (Input.GetKeyUp(key) && EventSystem.current.currentSelectedGameObject == null) {
             var screenResolution = Screen.resolutions[Screen.resolutions.Length - 1];
             float width = screenResolution.width;
             float height = screenResolution.height;

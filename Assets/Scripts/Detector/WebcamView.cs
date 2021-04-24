@@ -20,7 +20,6 @@ public class WebcamView : MonoBehaviour
     }
 
     void updateTexture() {
-        print("updateTexture");
         image.texture = source.capture;
         aspectRatioFitter.aspectRatio = source.ratio;
     }

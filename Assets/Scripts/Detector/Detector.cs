@@ -78,7 +78,6 @@ public class Detector : MonoBehaviour
             parameters = OpenCvSharp.Unity.TextureConversionParams.Default;
 
         if (webcamPixels32 == null || webcamPixels32.Length != texture.width*texture.height) {
-            Debug.Log("assign");
             webcamPixels32 = texture.GetPixels32();
         } else {
             texture.GetPixels32(webcamPixels32);
