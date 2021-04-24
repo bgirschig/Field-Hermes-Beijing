@@ -657,7 +657,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   detector: {fileID: 365374266}
-  mode: 1
+  mode: 0
   overallSpeed: 20
   forwardBias: 2.5
   smoothTime: 0.1

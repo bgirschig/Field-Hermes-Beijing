@@ -88,14 +88,14 @@ Material:
     - _levelInLow: 0.25
     - _levelOutHigh: 0.75
     - _levelOutLow: 0.363
-    - _lineThickness: 0.001
+    - _lineThickness: 0.32
     - _noiseAmount: 0.65
     - _noiseScale: 0.725
     - _normalInfluenceOnLine: 1
-    - _reveal: 1
+    - _reveal: 0.361
     - _sharpness: 1
-    - _stepa: 0
-    - _stepb: 0
+    - _stepa: 0.029
+    - _stepb: 0.073
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

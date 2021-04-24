@@ -15,8 +15,8 @@ Shader "Postprocessing/OutlinesEffect2"
         [Header(Line)]
         _lineColor ("Line color", Color) = (1,1,1,1)
         _lineThickness("Line thickness", Range(0, 2)) = 1
-        _stepa("bightness min", Range(0, 1)) = 1
-        _stepb("brightness max", Range(0, 1)) = 1
+        _stepa("bightness min", Range(0, 0.3)) = 1
+        _stepb("brightness max", Range(0, 0.3)) = 1
 
         [Space]
         [Header(Levels)]
@@ -99,16 +99,21 @@ Shader "Postprocessing/OutlinesEffect2"
                 float colorOutline = 0;
 
                 Compare(colorOutline, sourceBrightness, uv, float2(1, 0), 1);
-                Compare(colorOutline, sourceBrightness, uv, float2(2, 0), .75);
+                Compare(colorOutline, sourceBrightness, uv, float2(2, 0), .5);
                 Compare(colorOutline, sourceBrightness, uv, float2(-1, 0), -1);
-                Compare(colorOutline, sourceBrightness, uv, float2(-2, 0), -.75);
+                Compare(colorOutline, sourceBrightness, uv, float2(-2, 0), -.5);
 
                 Compare(colorOutline, sourceBrightness, uv, float2(0, 1), 1);
-                Compare(colorOutline, sourceBrightness, uv, float2(0, 2), .75);
+                Compare(colorOutline, sourceBrightness, uv, float2(0, 2), .5);
                 Compare(colorOutline, sourceBrightness, uv, float2(0, -1), -1);
-                Compare(colorOutline, sourceBrightness, uv, float2(0, -2), -.75);
+                Compare(colorOutline, sourceBrightness, uv, float2(0, -2), -.5);
 
-                colorOutline = smoothstep(_stepa, _stepb, colorOutline / 6);
+                // Compare(colorOutline, sourceBrightness, uv, float2(1, -1), 0.25);
+                // Compare(colorOutline, sourceBrightness, uv, float2(-1, -1), -0.25);
+                // Compare(colorOutline, sourceBrightness, uv, float2(-1, 1), -0.25);
+                // Compare(colorOutline, sourceBrightness, uv, float2(1, 1), 0.25);
+                
+                colorOutline = smoothstep(_stepa, _stepb, colorOutline);
                 return colorOutline;
             }
 
@@ -125,7 +130,7 @@ Shader "Postprocessing/OutlinesEffect2"
 
                 float outline = Edges(i.uv, brightness);
                 float outputBrightness = map(saturate(brightness), _levelInLow, _levelInHigh, _levelOutLow, _levelOutHigh);
-                float4 output = lerp(outputBrightness, _lineColor, outline);
+                float4 output = lerp(outputBrightness, _lineColor, outline*_lineColor.a);
 
                 // add noise
                 float2 screenUV = i.uv.xy * _ScreenParams.xy * _noise_TexelSize.xy / _noiseScale;
