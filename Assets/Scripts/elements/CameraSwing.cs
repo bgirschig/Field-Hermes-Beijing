@@ -85,7 +85,6 @@ public class CameraSwing : MonoBehaviour
 
     public void setMode(string modeName) {
         mode = (Mode)Enum.Parse( typeof(Mode), modeName );
-        print(mode);
     }
 
     public static List<string> modes {

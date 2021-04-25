@@ -16,9 +16,7 @@ public class DisplayManager : MonoBehaviour
     int displayGroupCount = 0;
 
     void Start ()
-    {
-        Debug.Log ("displays connected: " + Display.displays.Length);
-    
+    {    
         // activate displays
         foreach (var display in Display.displays) {
             display.Activate();
