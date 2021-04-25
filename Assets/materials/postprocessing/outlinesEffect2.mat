@@ -85,7 +85,7 @@ Material:
     - _depthInfluenceOnLine: 0.5
     - _distance: 7.72
     - _levelInHigh: 0.45
-    - _levelInLow: 0.275
+    - _levelInLow: 0.2
     - _levelOutHigh: 0.8
     - _levelOutLow: 0.25
     - _lineThickness: 0.35
