@@ -10,6 +10,8 @@ public class PreferencesHandler : MonoBehaviour
     [Header("Detector")]
     public Dropdown cameraSelector;
     public SharedWebcam webcam;
+    public Dropdown swingModeDropdown;
+    public CameraSwing cameraSwing;
 
     [Header("Style")]
     public InputField lanternColorInput;
@@ -27,6 +29,11 @@ public class PreferencesHandler : MonoBehaviour
         cameraSelector.options.Clear();
         cameraSelector.AddOptions(webcam.devices);
         initOption("detector.camera_name", cameraSelector, (string val) => webcam.setCamera(val), "");
+        
+        swingModeDropdown.options.Clear();
+        swingModeDropdown.AddOptions(CameraSwing.modes);
+        initOption("swingControl.mode", swingModeDropdown, (string val) => cameraSwing.setMode(val), "DETECTOR");
+
         initOption("style.lanternColor", lanternColorInput, (string val) => {
             Color color = colorFromHex(val);
             lantern.material.SetColor("_Color", color);

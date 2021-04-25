@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using System;
 
 public class CameraSwing : MonoBehaviour
 {
@@ -80,6 +81,20 @@ public class CameraSwing : MonoBehaviour
         prevSmoothedPosition = smoothedPosition;
         smoothedPosition = Mathf.SmoothDamp(smoothedPosition, targetPosition, ref currentVelocity, smoothTime);
         transform.Translate(0, 0, smoothedPosition - prevSmoothedPosition);
+    }
+
+    public void setMode(string modeName) {
+        mode = (Mode)Enum.Parse( typeof(Mode), modeName );
+        print(mode);
+    }
+
+    public static List<string> modes {
+        get {
+            var values = (Mode[])Enum.GetValues(typeof(Mode));
+            List<string> output = new List<string>();
+            for (int i = 0; i < values.Length; i++) output.Add(values[i].ToString());
+            return output;
+        }
     }
 
     public enum Mode {
