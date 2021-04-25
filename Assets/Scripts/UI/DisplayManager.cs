@@ -20,7 +20,19 @@ public class DisplayManager : MonoBehaviour
         Debug.Log ("displays connected: " + Display.displays.Length);
     
         // activate displays
-        for (int i = 1; i < Display.displays.Length; i++) Display.displays[i].Activate();
+        foreach (var display in Display.displays) {
+            display.Activate();
+            display.SetRenderingResolution(display.systemWidth, display.systemHeight);
+        }
+
+        // The unity doc is not entirely clear about which display Screen.SetResolution applies to,
+        // but using the first display from Display.displays seems to work in our case.
+        // TODO: figure out how to do this properly (without assuming Screen.setResolution targets the first display)
+        Screen.SetResolution(
+            Display.displays[0].systemWidth,
+            Display.displays[0].systemHeight,
+            FullScreenMode.Windowed,
+            60);
 
         // figure out how many display groups we have
         displayGroupItems = GameObject.FindObjectsOfType<DisplayGroupItem>();
@@ -28,12 +40,6 @@ public class DisplayManager : MonoBehaviour
         {
             if (item.displayGroup+1 > displayGroupCount) displayGroupCount = item.displayGroup + 1;
         }
-
-        // go fullscreen (multiple displays don't work with multiple displays)
-        var screenResolution = Screen.resolutions[Screen.resolutions.Length - 1];
-        float width = screenResolution.width;
-        float height = screenResolution.height;
-        Screen.SetResolution((int)width, (int)height, FullScreenMode.Windowed, screenResolution.refreshRate);
     }
 
     void Update() {
