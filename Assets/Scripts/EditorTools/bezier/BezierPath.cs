@@ -36,12 +36,13 @@ public class BezierPath : MonoBehaviour {
         } else {
             Gizmos.color = new Color(0,0.7f,0);
         }
-
+        Gizmos.matrix = transform.localToWorldMatrix;
+        DrawBezierGizmo();
+    }
+    public void DrawBezierGizmo() {
         if (bezier.precomputedPoints == null) return;
         Vector3? prevPoint = null;
-        Vector3 point;
-        foreach(var localPoint in bezier.precomputedPoints) {
-            point = transform.TransformPoint(localPoint);
+        foreach(var point in bezier.precomputedPoints) {
             if (prevPoint != null) Gizmos.DrawLine((Vector3)prevPoint, point);
             prevPoint = point;
         }
