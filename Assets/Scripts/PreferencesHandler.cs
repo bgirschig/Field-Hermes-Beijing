@@ -127,10 +127,20 @@ public class PreferencesHandler : MonoBehaviour
         string savedValue = PlayerPrefs.GetString(name);
         if (savedValue != defaultValue) resetButton.interactable = true;
 
-        int valueIndex = input.options.FindIndex(item => { return item.text == savedValue; });
+        bool foudValue = false;
+        for (int i = 0; i < input.options.Count; i++)
+        {
+            if (input.options[i].text == savedValue) {
+                foudValue = true;
+                break;
+            }
+        }
+
+        int valueIndex = 0;
+        if (foudValue) valueIndex = input.options.FindIndex(item => { return item.text == savedValue; });
         input.value = valueIndex;
-        onChange.Invoke(savedValue);
-        
+        onChange.Invoke(input.options[valueIndex].text);
+
         input.onValueChanged.AddListener(delegate {
             resetButton.interactable = true;
             string newValue = input.options[input.value].text;
