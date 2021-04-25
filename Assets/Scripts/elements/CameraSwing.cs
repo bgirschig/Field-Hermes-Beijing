@@ -48,6 +48,17 @@ public class CameraSwing : MonoBehaviour
                 float amplitude = 1;
                 speed = Mathf.Sin(2 * Mathf.PI * Time.time / period) * (amplitude / period);
                 break;
+            case Mode.KEYBOARD:
+                if (EventSystem.current.currentSelectedGameObject != null) break;
+
+                if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.RightArrow)) {
+                    speed = linearForwartSpeed;
+                } else if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.LeftArrow)) {
+                    speed = -linearForwartSpeed;
+                    // compensate forward bias in keyboard mode, so that foward and backward speeds are the same
+                    speed *= forwardBias;
+                }
+                break;
             default:
                 Debug.LogError("Unexpected camera swing mode");
                 break;
@@ -72,6 +83,6 @@ public class CameraSwing : MonoBehaviour
     }
 
     public enum Mode {
-        DETECTOR, LINEAR_FORWARD, SINE_EMULATOR
+        DETECTOR, LINEAR_FORWARD, SINE_EMULATOR, KEYBOARD
     }
 }
