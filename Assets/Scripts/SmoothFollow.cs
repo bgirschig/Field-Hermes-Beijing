@@ -11,6 +11,9 @@ public class SmoothFollow : MonoBehaviour
     Vector3 prevTargetPosition;
     Vector3 currentVelocity;
 
+    public bool antiReturn;
+    public Vector3 antiReturnDirection = Vector3.forward;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +23,10 @@ public class SmoothFollow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (antiReturn) {
+            var direction = target.position - transform.position;
+            if (Vector3.Dot(antiReturnDirection, direction) < 0) return;
+        }
         transform.position = Vector3.SmoothDamp(transform.position, target.position, ref currentVelocity, smoothTime);
     }
 

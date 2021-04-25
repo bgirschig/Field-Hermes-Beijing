@@ -6936,6 +6936,8 @@ MonoBehaviour:
   target: {fileID: 531417596}
   smoothTime: 2
   teleportNotifier: {fileID: 294327441}
+  antiReturn: 1
+  antiReturnDirection: {x: 0, y: 0, z: 1}
 --- !u!114 &1943116497
 MonoBehaviour:
   m_ObjectHideFlags: 0
