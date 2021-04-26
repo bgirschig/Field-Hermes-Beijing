@@ -83,6 +83,7 @@ public class MaskCanvas : MonoBehaviour, IPointerDownHandler
     }
 
     public void OnMaskChange() {
+        Debug.Log("OnMaskChange");
         rawImage.texture = OpenCvSharp.Unity.MatToTexture(detector.detectorCore.srcMask);
     }
 

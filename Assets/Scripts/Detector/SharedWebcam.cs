@@ -13,6 +13,7 @@ using UnityEngine.Events;
 public class SharedWebcam : MonoBehaviour
 {
     public int defaultCameraIndex;
+    public bool autoStart;
 
     [NonSerialized]
     public UnityEvent onCameraChange = new UnityEvent();
@@ -51,6 +52,7 @@ public class SharedWebcam : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (!autoStart) return;
         if (currentCamera != null) setCamera(currentCamera);
         else setCamera(defaultCameraIndex);
     }
@@ -72,6 +74,7 @@ public class SharedWebcam : MonoBehaviour
     }
 
     public void setCamera(string deviceName) {
+        Debug.Log($"Set camera: {deviceName}");
         if (capture) capture.Stop();
         if (deviceName == currentCamera) return;
         if (deviceName == null) return;
