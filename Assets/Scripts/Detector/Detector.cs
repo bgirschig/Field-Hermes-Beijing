@@ -9,7 +9,7 @@ using UnityEngine.Events;
 public class Detector : MonoBehaviour
 {
     [NonSerialized]
-    public DetectorCore detectorCore;
+    public DetectorCore detectorCore = new DetectorCore();
 
     // Inspector settings
     public SharedWebcam webcam;
@@ -41,8 +41,6 @@ public class Detector : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        detectorCore = new DetectorCore();
-
         webcam.onCameraChange.AddListener(OnCameraChange);
         if (webcam.ready) OnCameraChange();
 
