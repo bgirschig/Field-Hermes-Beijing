@@ -12,7 +12,7 @@ public class ColliderEventTrigger : MonoBehaviour
     public List<string> tagFilter;
 
     void OnTriggerEnter(Collider other) {
-        if (tagFilter.Count>0 && tagFilter.Contains(other.tag)) {
+        if (tagFilter.Count == 0 || tagFilter.Contains(other.tag)) {
             BaseEventData eventData = new BaseEventData(EventSystem.current);
             onEnter.Invoke(eventData);
         }
