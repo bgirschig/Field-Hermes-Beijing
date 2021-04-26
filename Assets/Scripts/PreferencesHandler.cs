@@ -15,6 +15,7 @@ public class PreferencesHandler : MonoBehaviour
     public CameraSwing cameraSwing;
     public Dropdown swingModeDropdown;
     public Slider speedSlider;
+    public Slider idleSpeedSlider;
 
     [Header("Style")]
     public InputField lanternColorInput;
@@ -37,6 +38,7 @@ public class PreferencesHandler : MonoBehaviour
         swingModeDropdown.AddOptions(CameraSwing.modes);
         initOption("swingControl.mode", swingModeDropdown, (string val) => cameraSwing.setMode(val), "DETECTOR");
         initOption("swingControl.speed", speedSlider, (float val) => cameraSwing.overallSpeed = val, 20);
+        initOption("swingControl.idleSpeed", idleSpeedSlider, (float val) => cameraSwing.idleSpeed = val, 0.01f);
 
         initOption("style.lanternColor", lanternColorInput, (string val) => {
             Color color = colorFromHex(val);

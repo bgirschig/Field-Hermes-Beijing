@@ -14,6 +14,8 @@ public class CameraSwing : MonoBehaviour
     public float overallSpeed = 1;
     [Tooltip("How much faster we should move when going forward")]
     public float forwardBias = 1.5f;
+    [Tooltip("how fast to move forward when there is no input / detected movement")]
+    public float idleSpeed = 0.01f;
     [Tooltip("Higher smooth values will make the movement smoother (duh) but also less responsive")]
     public float smoothTime = 0.1f;
     [Tooltip("When holding the shift key down, all speed settings will be multiplied by this much")]
@@ -64,6 +66,8 @@ public class CameraSwing : MonoBehaviour
                 Debug.LogError("Unexpected camera swing mode");
                 break;
         }
+
+        speed += idleSpeed;
 
         bool shiftPressed = (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) &&
             EventSystem.current.currentSelectedGameObject == null;
