@@ -9,7 +9,9 @@ public class PreferencesHandler : MonoBehaviour
     
     [Header("Detector")]
     public Dropdown cameraSelector;
+    public Detector detector;
     public SharedWebcam webcam;
+    public Radio screenDirection;
 
     [Header("Movement")]
     public CameraSwing cameraSwing;
@@ -33,6 +35,7 @@ public class PreferencesHandler : MonoBehaviour
         cameraSelector.options.Clear();
         cameraSelector.AddOptions(webcam.devices);
         initOption("detector.camera_name", cameraSelector, (string val) => webcam.setCamera(val), "");
+        initOption("detector.screenDirection", screenDirection, (int value) => detector.invert = value == 0, 0);
         
         swingModeDropdown.options.Clear();
         swingModeDropdown.AddOptions(CameraSwing.modes);
@@ -116,6 +119,24 @@ public class PreferencesHandler : MonoBehaviour
             resetButton.interactable = true;
             onChange.Invoke(input.isOn);
             PlayerPrefs.SetInt(name, input.isOn ? 1 : 0);
+        });
+    }
+
+    // Initialize a 'radio' config option: load from playerprefs, default value, update the global
+    // 'resettable' and 'saveable' state, and change callback
+    void initOption(string name, Radio input, UnityAction<int> onChange, int defaultValue=0) {
+        if (!PlayerPrefs.HasKey(name)) PlayerPrefs.SetInt(name, defaultValue);
+        
+        int value = PlayerPrefs.GetInt(name);
+        if (value != defaultValue) resetButton.interactable = true;
+
+        input.setValue(value);
+        onChange.Invoke(value);
+        
+        input.onChange.AddListener(delegate {
+            resetButton.interactable = true;
+            onChange.Invoke(input.value);
+            PlayerPrefs.SetInt(name, input.value);
         });
     }
 

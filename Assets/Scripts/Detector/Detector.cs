@@ -13,6 +13,14 @@ public class Detector : MonoBehaviour
 
     // Inspector settings
     public SharedWebcam webcam;
+    public bool invert {
+        get { return _inverted; }
+        set {
+            _inverted = value;
+            Debug.Log("inverted");
+            initState();
+        }
+    }
 
     // output
     [NonSerialized]
@@ -37,6 +45,7 @@ public class Detector : MonoBehaviour
     float lastRawPosition = 0;
     float positionSmoothSpeed = 0;
     float positionSmoothDuration = 0.01f;
+    bool _inverted;
 
     // Start is called before the first frame update
     void Start()
@@ -45,6 +54,13 @@ public class Detector : MonoBehaviour
         if (webcam.ready) OnCameraChange();
 
         LoadMaskFromDisk();
+    }
+
+    void initState() {
+        lastRawPosition = 0;
+        lastDetectionTime = 0;
+        smoothedSpeed = 0;
+        smoothedPosition = 0;
     }
 
     // Update is called once per frame
@@ -59,6 +75,7 @@ public class Detector : MonoBehaviour
             float deltaTime = Time.time - lastDetectionTime;
             lastDetectionTime = Time.time;
             float position = detectorCore.detect(getWebcamMat(webcam.capture));
+            if (invert) position = 1 - position;
 
             if (deltaTime > 0) {
                 float rawSpeed = (position - lastRawPosition) / deltaTime;
