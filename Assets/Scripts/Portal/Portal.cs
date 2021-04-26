@@ -3,6 +3,7 @@
 // Teleport and portal transform logic happen in PortalItem
 
 using UnityEngine;
+using UnityEngine.Events;
 
 [ExecuteInEditMode()]
 public class Portal : MonoBehaviour
@@ -11,12 +12,17 @@ public class Portal : MonoBehaviour
     public Portal nextPortal;
 
     public static Portal current;
+    /// triggered when the portal teleports an element
+    public UnityEvent<GameObject> onTeleport = new UnityEvent<GameObject>();
 
     void OnTriggerEnter (Collider other) {
         PortalItem otherItem = other.GetComponent<PortalItem>();
         if (otherItem == null) return;
         if (otherItem.isTrigger && nextPortal != null) nextPortal.activate();
-        if (otherItem.teleport) otherItem.teleportToTwin();
+        if (otherItem.teleport) {
+            otherItem.teleportToTwin();
+            onTeleport.Invoke(otherItem.gameObject);
+        }
 	}
 
     void OnDrawGizmos() {
