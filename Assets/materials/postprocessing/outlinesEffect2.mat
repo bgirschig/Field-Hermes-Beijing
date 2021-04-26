@@ -84,9 +84,9 @@ Material:
     - _colorOffset: 4.48
     - _depthInfluenceOnLine: 0.5
     - _distance: 7.72
-    - _levelInHigh: 0.425
-    - _levelInLow: 0.225
-    - _levelOutHigh: 0.75
+    - _levelInHigh: 0.4
+    - _levelInLow: 0.2
+    - _levelOutHigh: 0.9
     - _levelOutLow: 0.175
     - _lineThickness: 0.175
     - _noiseAmount: 0.9
@@ -95,7 +95,7 @@ Material:
     - _reveal: 1
     - _sharpness: 1
     - _stepa: 0
-    - _stepb: 0.07
+    - _stepb: 0.05
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
