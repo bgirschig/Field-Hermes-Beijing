@@ -25,7 +25,7 @@ public class Detector : MonoBehaviour
 
     // Textures
     [NonSerialized]
-    public Texture debugTexture; // In order to access the debug image from other components, it
+    public Texture2D debugTexture; // In order to access the debug image from other components, it
                                  // needs to be in the 'Texture' format we'll do the conversion
                                  // after the detector is done with a frame and before starting the
                                  // next one
@@ -53,7 +53,7 @@ public class Detector : MonoBehaviour
         if (!enabled) return;
         
         if (detectorCore.debugImg != null) {
-            debugTexture = OpenCvSharp.Unity.MatToTexture(detectorCore.debugImg);
+            debugTexture = OpenCvSharp.Unity.MatToTexture(detectorCore.debugImg, debugTexture);
         }
         if (webcam.didUpdateThisFrame) {
             float deltaTime = Time.time - lastDetectionTime;
