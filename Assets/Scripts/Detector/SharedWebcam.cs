@@ -72,6 +72,7 @@ public class SharedWebcam : MonoBehaviour
     }
 
     public void setCamera(string deviceName) {
+        Debug.Log($"Set camera: {deviceName}");
         if (capture) capture.Stop();
         if (deviceName == currentCamera) return;
         if (deviceName == null) return;
