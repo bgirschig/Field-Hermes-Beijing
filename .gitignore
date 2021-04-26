@@ -75,3 +75,4 @@ BuildReports
 BuildReports.meta
 optim_out
 Asset_Creation/mesh_optimisation/*.blend
+.DS_Store
