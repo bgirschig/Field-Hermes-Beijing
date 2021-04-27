@@ -216,6 +216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1483ac59b6126b40be1cb2a54c74837, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  format: 0.00
 --- !u!1 &23163232
 GameObject:
   m_ObjectHideFlags: 0
@@ -6333,6 +6334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1483ac59b6126b40be1cb2a54c74837, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  format: .000
 --- !u!114 &1190355519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6366,7 +6368,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0.01
+  m_Text: .010
 --- !u!222 &1190355520
 CanvasRenderer:
   m_ObjectHideFlags: 0
