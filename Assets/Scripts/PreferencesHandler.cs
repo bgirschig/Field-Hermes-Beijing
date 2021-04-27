@@ -16,8 +16,10 @@ public class PreferencesHandler : MonoBehaviour
     [Header("Movement")]
     public CameraSwing cameraSwing;
     public Dropdown swingModeDropdown;
+    public SmoothFollow lanternPlane;
     public Slider speedSlider;
     public Slider idleSpeedSlider;
+    public Slider lanterSmoothingSlider;
 
     [Header("Style")]
     public InputField lanternColorInput;
@@ -42,6 +44,8 @@ public class PreferencesHandler : MonoBehaviour
         initOption("swingControl.mode", swingModeDropdown, (string val) => cameraSwing.setMode(val), "DETECTOR");
         initOption("swingControl.speed", speedSlider, (float val) => cameraSwing.overallSpeed = val, 20);
         initOption("swingControl.idleSpeed", idleSpeedSlider, (float val) => cameraSwing.idleSpeed = val, 0.01f);
+
+        initOption("lantern.smoothing", lanterSmoothingSlider, (float val) => lanternPlane.smoothTime = val, 0.2f);
 
         initOption("style.lanternColor", lanternColorInput, (string val) => {
             Color color = colorFromHex(val);
