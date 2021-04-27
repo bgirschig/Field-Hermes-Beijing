@@ -17,7 +17,6 @@ public class Detector : MonoBehaviour
         get { return _inverted; }
         set {
             _inverted = value;
-            Debug.Log("inverted");
             initState();
         }
     }
