@@ -7,7 +7,7 @@ public class AppId : MonoBehaviour
 {
     void Start()
     {
-        GetComponent<Text>().text = $"{Application.identifier} {Application.version} (unity {Application.unityVersion})";
+        GetComponent<Text>().text = $"com.{Application.companyName}.{Application.productName} {Application.version} (unity {Application.unityVersion})";
         print($"Application.identifier {Application.identifier}");
     }
  }
