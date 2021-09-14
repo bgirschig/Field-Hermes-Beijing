@@ -1,4 +1,4 @@
-# _Field - Feima edition
+# Field Hermès Beijing
 A journey through an imaginary city between Paris and Beijing, in which objects take over.
 For more information, head to the [Project page](https://bastiengirschig.com/item/377)
 
