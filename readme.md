@@ -1,3 +1,7 @@
+# _Field - Feima edition
+A journey through an imaginary city between Paris and Beijing, in which objects take over.
+For more information, head to the [Project page](https://bastiengirschig.com/item/377)
+
 ## Stars
 We used to have a dynamic star field, that would "follow" the camera (stars out of view would be
 moved back 'to the other side'). This was to limit the amount of stars needed.
